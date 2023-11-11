@@ -16,7 +16,7 @@
                     <p>Price: ￥{{ $item->price }}</p>
                     <!-- Add any other details you want to display -->
                 </div>
-                <button>Add to Cart</button>
+                <button>商品詳細</button>
             </div>
         @endforeach
     </div>
