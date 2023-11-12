@@ -12,4 +12,9 @@ class ItemController extends Controller
         $items = Item::paginate(40); // 1ページに5つのアイテムを表示すると仮定
         return view('index', compact('items'));
     }
+
+    public function exhibit()
+    {
+        return view('exhibit');
+    }
 }

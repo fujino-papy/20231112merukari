@@ -32,14 +32,29 @@
 }
 
 .header-nav__link {
+    display: block;
     color: #fff;
     text-decoration: none;
+    width: 100px;
 }
-
+.exhibit{
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 70px;
+}
 .header-nav__button {
+    display: block;
     border: none;
     background: transparent;
     color: #fff;
     font-size: 16px;
-    cursor: pointer;
+    width: 100px;
+}
+.header-nav__button:hover {
+    background-color: initial;
 }

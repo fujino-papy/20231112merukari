@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 Route::get('/login', [AuthController::class, 'login']);
 Route::get('/',[ItemController::class,'index']);
+Route::get('/exhibit', [ItemController::class,'exhibit']);

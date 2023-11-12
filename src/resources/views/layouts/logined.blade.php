@@ -38,6 +38,9 @@
                 <a class="header-nav__link" href="/login">ログイン</a>
             </li>
             @endif
+            <li class="header-nav__item">
+                <a class="exhibit" href="{{ Auth::check() ? '/exhibit' : '/login' }}">出品</a>
+            </li>
             </ul>
         </nav>
         </div>
