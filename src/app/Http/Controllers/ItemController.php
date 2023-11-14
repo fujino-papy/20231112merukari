@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Condition;
 use App\Models\Item;
 
 class ItemController extends Controller
@@ -15,6 +17,35 @@ class ItemController extends Controller
 
     public function exhibit()
     {
-        return view('exhibit');
+        $categories = Category::all();
+        $conditions = Condition::all();
+        return view('exhibit', compact('categories', 'conditions'));
+    }
+
+    public function store(Request $request)
+    {
+        // バリデーションのルールを追加
+        $request->validate([
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category_id' => 'required|exists:categories,id',
+            'condition_id' => 'required|exists:conditions,id',
+            'name' => 'required|string|max:20',
+            'summary' => 'required|string|max:200',
+            'price' => 'required|integer|max:999999999',
+        ]);
+
+        $imagePath = $request->file('image')->store('uploads', 'public');
+
+        $item = new Item();
+        $item->users_id = auth()->user()->id; // 例: ログインユーザーのIDを取得する方法に応じて修正
+        $item->categories_id = $request->input('category_id');
+        $item->conditions_id = $request->input('condition_id');
+        $item->name = $request->input('name');
+        $item->summary = $request->input('summary');
+        $item->image_url = '/storage/' . $imagePath; // publicディレクトリ内にアップロードされた画像へのパス
+        $item->price = $request->input('price');
+        $item->save();
+
+        return redirect('/');
     }
 }

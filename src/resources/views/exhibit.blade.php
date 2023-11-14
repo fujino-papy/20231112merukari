@@ -18,7 +18,52 @@
     </header>
 
     <main>
-        <h1>出品ページ</h1>
+        <form method="post" action="{{ route('items.store') }}" enctype="multipart/form-data">
+            @csrf
+
+            <!-- 商品画像 -->
+            <label for="image">商品画像:</label>
+            <input type="file" name="image" accept="image/*" required>
+            <br>
+
+            <!-- カテゴリー -->
+            <label for="category">カテゴリー:</label>
+            <select name="category_id" required>
+                <!-- カテゴリーの選択肢を動的に取得するロジックを追加 -->
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->categories }}</option>
+                @endforeach
+            </select>
+            <br>
+
+            <!-- 商品の状態 -->
+            <label for="condition">商品の状態:</label>
+            <select name="condition_id" required>
+                <!-- 商品の状態の選択肢を動的に取得するロジックを追加 -->
+                @foreach($conditions as $condition)
+                    <option value="{{ $condition->id }}">{{ $condition->conditions }}</option>
+                @endforeach
+            </select>
+            <br>
+
+            <!-- 商品名 -->
+            <label for="name">商品名:</label>
+            <input type="text" name="name" required>
+            <br>
+
+            <!-- 商品の説明 -->
+            <label for="summary">商品の説明:</label>
+            <textarea name="summary" required></textarea>
+            <br>
+
+            <!-- 販売価格 -->
+            <label for="price">販売価格:</label>
+            <input type="number" name="price" required>
+            <br>
+
+            <!-- 出品ボタン -->
+            <button type="submit">出品する</button>
+        </form>
     </main>
 </body>
 

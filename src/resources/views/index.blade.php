@@ -21,7 +21,7 @@
         @endforeach
     </div>
 
-     <div class="pagination">
+    <div class="pagination">
         {{ $items->links() }}
     </div>
 @endsection
