@@ -48,4 +48,11 @@ class ItemController extends Controller
 
         return redirect('/');
     }
+
+    public function detail($id)
+    {
+        $item = Item::find($id); // あなたのアイテムモデルに合わせて変更
+
+        return view('detail', ['item' => $item]);
+    }
 }

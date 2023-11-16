@@ -16,7 +16,7 @@
                     <p>Price: ￥{{ $item->price }}</p>
                     <!-- Add any other details you want to display -->
                 </div>
-                <button class="detail">商品詳細</button>
+                <a  class="detail"  href="{{ route('detail', ['id' => $item->id]) }}" class="detail">商品詳細</a>
             </div>
         @endforeach
     </div>

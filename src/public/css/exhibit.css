@@ -1,0 +1,120 @@
+
+.header{
+    min-width: 500px;
+}
+.ttl{
+    margin: 0;
+    background-color: black;
+}
+
+.custom-file-input {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    text-align: center;
+}
+
+.file-upload-btn {
+    text-align: center;
+    background-color: #3498db;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.file-upload-btn:hover {
+    background-color: #2980b9;
+}
+
+.image {
+    position: absolute;
+    font-size: 50px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}
+
+.image-preview img {
+    width: 30%;
+    height: auto;
+}
+/* フォーム */
+
+.item_detail,
+.item_name,
+.item_price{
+    border-bottom: solid;
+    border-width: 1px;
+}
+
+.item_detail{
+    margin-top: 50px;
+}
+.exhibit_content {
+    margin: 0 auto;
+    width: 500px;
+    padding: 20px 0 0 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.exhibit_ttl {
+    text-align: center;
+    font-weight: bold;
+}
+
+.exhibit_content label {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.exhibit_content input,
+.exhibit_content select,
+.exhibit_content textarea {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.exhibit_content input[type="file"] {
+    display: none;
+}
+
+.exhibit_content .image-preview {
+    margin-top: 20px;
+}
+
+.exhibit_content .image-preview img {
+    width: 100%;
+}
+
+
+.price {
+    text-align: left;
+}
+
+.price::before {
+    content: "￥";
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.exhibit_button {
+    margin-top: 30px;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.exhibit_button:hover {
+    background-color: #2980b9;
+}
