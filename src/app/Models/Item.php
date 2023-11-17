@@ -19,4 +19,14 @@ class Item extends Model
         'price',
         'sold',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'categories_id');
+    }
+
+    public function condition()
+    {
+        return $this->belongsTo(Condition::class, 'conditions_id');
+    }
 }

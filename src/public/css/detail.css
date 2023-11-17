@@ -1,0 +1,79 @@
+/* 商品画像と詳細のコンテナ */
+.item-details-container {
+    width: 50%;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    /* clearfixを追加 */
+}
+
+/* 商品画像 */
+.item_img {
+    float: left;
+    width: 50%;
+    box-sizing: border-box;
+    /* ボックスモデル修正 */
+}
+
+.img{
+    width: 75%;
+    margin-top: 10%;
+    margin-left: 10%;
+}
+
+/* 商品詳細 */
+.item-details {
+    width: 50%;
+    min-width: 250px;
+    /* item_imgと同じにする */
+    box-sizing: border-box;
+    /* ボックスモデル修正 */
+    padding: 20px;
+    background-color: #fff;
+    float: left;
+    /* 左にフロート */
+}
+
+/* 商品名 */
+.item_name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 価格 */
+.item_price {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* 購入ボタン */
+.buy {
+    width: 175px;
+    height: 40px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* 商品説明 */
+.summary {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+/* 商品情報 */
+.info {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+/* カテゴリー */
+.item_category {
+    margin-bottom: 10px;
+}
+
+/* 商品の状態 */
+.item_condition {
+    margin-bottom: 10px;
+}

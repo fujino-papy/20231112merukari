@@ -10,10 +10,10 @@
     <div class="items-container">
         @foreach($items as $item)
             <div class="item">
-                <img src="{{ asset($item->image_url) }}" alt="{{ $item->name }}">
+                <img class="item_img" src="{{ asset($item->image_url) }}" alt="{{ $item->name }}">
                 <div class="item-details">
-                    <p>{{ $item->name }}</p>
-                    <p>Price: ￥{{ $item->price }}</p>
+                    <p class="item_name">{{ $item->name }}</p>
+                    <p class="item_price">Price: ￥{{ $item->price }}</p>
                     <!-- Add any other details you want to display -->
                 </div>
                 <a  class="detail"  href="{{ route('detail', ['id' => $item->id]) }}" class="detail">商品詳細</a>
