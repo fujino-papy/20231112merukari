@@ -11,7 +11,15 @@
         <div class="item-details">
         <p class="item_name">{{ $item->name }}</p>
             <p class="item_price">￥{{ $item->price }}</p>
-            <button class="buy">購入する</button>
+            @auth
+        <form action="{{ route('buyPage',['item_id' => $item->id]) }}" method="post">
+            @csrf
+            <button type="submit" class="buyPage">購入する</button>
+        </form>
+        @else
+            <a href="{{ route('login') }}" class="buy">ログイン</a>
+        @endauth
+
             <p class="summary">商品説明</p>
             <p class="item_summary">{{$item->summary}}</p>
             <p class="info">商品の情報</p>

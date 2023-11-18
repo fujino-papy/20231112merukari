@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\BuyController;
 
 
 /*
@@ -20,10 +21,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [AuthController::class, 'login']);
+Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/',[ItemController::class,'index']);
 Route::get('/exhibit', [ItemController::class,'exhibit']);
 
 Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 Route::get('/item/{id}', [ItemController::class, 'detail'])->name('detail');
+Route::post('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage');

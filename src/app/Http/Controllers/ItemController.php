@@ -51,7 +51,7 @@ class ItemController extends Controller
 
     public function detail($id)
     {
-        $item = Item::find($id); // あなたのアイテムモデルに合わせて変更
+        $item = Item::find($id);
 
         return view('detail', ['item' => $item]);
     }
