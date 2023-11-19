@@ -36,6 +36,33 @@
     font-weight: bold;
 }
 
+.pay {
+    display: flex;
+    align-items: center;
+     /* 垂直方向に中央揃え */
+}
+
+.pay_Method {
+    margin-right: 10px;
+}
+.Payment-Method_change{
+    margin-left: 50%;
+}
+
+.address {
+    display: flex;
+    align-items: center;
+     /* 垂直方向に中央揃え */
+}
+
+.delivery_address {
+    margin-right: 10px;
+     /* 要素間の間隔を調整 */
+}
+
+.address_change{
+    margin-left: 50%;
+}
 .price-info-container {
     float: right;
     margin-top: 100px;
