@@ -109,3 +109,21 @@
     border-radius: 5px;
     margin-top: 100px;
 }
+
+.cardDetails {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    /* 適切なマージンを設定 */
+}
+
+.cardNumberElement{
+    width: 20%;
+}
+
+.expiryDateElement,
+.cvvElement {
+    margin-top: 8px;
+    width: 30%;
+    /* 適切なマージンを設定 */
+}

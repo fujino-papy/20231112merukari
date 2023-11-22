@@ -22,12 +22,11 @@ Route::get('/', function () {
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/',[ItemController::class,'index']);
+Route::get('/',[ItemController::class,'index'])->name('index');
 Route::get('/exhibit', [ItemController::class,'exhibit']);
 
 Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 Route::get('/item/{id}', [ItemController::class, 'detail'])->name('detail');
 Route::post('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage');
-Route::get('/purchase/{itemId}', 'PaymentController@processPayment');
-Route::post('/purchase/complete', 'PaymentController@completePayment');
+Route::post('/items/{item}/purchase', [BuyController::class, 'processPurchase'])->name('items.purchase');

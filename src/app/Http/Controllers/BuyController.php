@@ -5,55 +5,64 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Item;
 use Stripe\Stripe;
-use Stripe\PaymentIntent;
+use Stripe\PaymentMethod;
+use Illuminate\Support\Facades\Auth;
 
 class BuyController extends Controller
 {
+
     public function buyPage($id)
     {
+        // Stripe API キーの設定
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+
         $item = Item::find($id);
 
-        return view('buy', ['item' => $item]);
-    }
-
-    public function processPayment(Request $request, $itemId)
-    {
-        // Stripe初期化
-        Stripe::setApiKey(config('services.stripe.secret'));
-
-        // 商品情報をデータベースから取得
-        $item = Item::findOrFail($itemId);
-
-        // Stripe PaymentIntentを作成
-        $intent = PaymentIntent::create([
-            'amount' => $item->price * 100,  // 金額はセント単位で指定
+        // StripeのPaymentIntentを作成
+        $paymentIntent = \Stripe\PaymentIntent::create([
+            'amount' => $item->price,  // 金額をセント単位に変換
             'currency' => 'JPY',
         ]);
 
-        // PaymentIntentのIDをセッションに保存
-        session()->put('paymentIntentId', $intent->id);
+        // PaymentIntentのクライアントシークレットをセッションに保存
+        session()->put('paymentIntentId', $paymentIntent->id);
 
-        // 購入ページにリダイレクト
-        return view('payments.checkout', compact('item', 'intent'));
+        return view('buy', [
+            'item' => $item,
+            'clientSecret' => $paymentIntent->client_secret,
+            'paymentIntentId' => $paymentIntent->id, // PaymentIntentのIDをビューに渡す
+        ]);
     }
 
-    public function completePayment(Request $request)
+    public function processPurchase(Request $request)
     {
+        // Stripe API キーの設定
+        \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+
+        // 生成されたトークンを取得
+        $stripeToken = $request->input('stripeToken');
+
         // PaymentIntentのIDを取得
-        $paymentIntentId = session()->get('paymentIntentId');
+        $paymentIntentId = $request->input('paymentIntentId');
 
-        // 支払い確定
-        $paymentIntent = PaymentIntent::retrieve($paymentIntentId);
-        $paymentIntent->confirm();
+        try {
+            // PaymentIntentを取得
+            $paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
 
-        // 支払いが成功した場合の処理
+            // PaymentIntentに支払い手段を設定して確定
+            $paymentIntent->confirm([
+                'payment_method' => $stripeToken,
+                'return_url' => 'http://localhost/',  // 成功時のリダイレクト先URLを適切なものに変更
+            ]);
 
-        // 支払い情報を保存等の処理を追加
+            // 支払いが成功した場合の処理
 
-        // セッションのクリア
-        session()->forget('paymentIntentId');
+            // 支払い情報を保存等の処理を追加
 
-        return view('payments.success');
+            return redirect('/');
+        } catch (\Stripe\Exception\InvalidRequestException $e) {
+            // エラーハンドリング
+            return back()->with('error', $e->getMessage());
+        }
     }
-
 }

@@ -17,7 +17,9 @@
             <button type="submit" class="buyPage">購入する</button>
         </form>
         @else
-            <a href="{{ route('login') }}" class="buy">ログイン</a>
+        <form action="{{ route('login') }}" method="get">
+            <button class="buyPage" class="buy">購入する</button>
+        </form>
         @endauth
 
             <p class="summary">商品説明</p>
