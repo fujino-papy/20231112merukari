@@ -42,8 +42,8 @@
                     @csrf
                     <input type="hidden" name="paymentIntentId" value="{{ $paymentIntentId }}">
                     <!-- 他のフォーム要素など -->
-                    <button type="submit" class="buy-button" onclick="initiatePurchase()">購入する</button>
-</form>
+                    <button type="submit" class="buy-button">購入する</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -83,19 +83,30 @@
     const { token, error } = await stripe.createToken(card);
 
     if (error) {
-        // エラー処理
-        console.error(error);
-    } else {
-        // 生成されたトークンをフォームに追加
-        const form = document.getElementById('purchaseForm');
-        const tokenInput = document.createElement('input');
-        tokenInput.type = 'hidden';
-        tokenInput.name = 'stripeToken';
-        tokenInput.value = token.id;
-        form.appendChild(tokenInput);
+            // エラー処理
+            console.error(error);
+        } else {
+            // 生成されたトークンをフォームに追加
+            const form = document.getElementById('purchaseForm');
+            const tokenInput = document.createElement('input');
+            tokenInput.type = 'hidden';
+            tokenInput.name = 'stripeToken';
+            tokenInput.value = token.id;
+            form.appendChild(tokenInput);
 
-        // フォームをサーバーサイドに送信
-        form.submit();
+            // 支払方法をフォームに追加
+            const paymentMethodInput = document.createElement('input');
+            paymentMethodInput.type = 'hidden';
+            paymentMethodInput.name = 'paymentMethod';
+            if (document.querySelector('input[name="paymentMethod"][value="card"]').checked) {
+                paymentMethodInput.value = 'card';
+            } else {
+                paymentMethodInput.value = 'konbini';
+            }
+            form.appendChild(paymentMethodInput)
+
+            // フォームをサーバーサイドに送信
+            form.submit();
     }
 });
 
@@ -149,7 +160,11 @@
             {
                 payment_method: {
                     card: card,
-                }
+                    billing_details: {
+                    // お客様の請求先情報
+                    name: 'John Doe',
+                    },
+                },
             }
         ).then(function(result) {
             if (result.error) {
