@@ -38,11 +38,9 @@
                         <li class="total_price">支払金額￥{{ $item->price }}</li>
                         <div class="way" id="selectedPaymentMethod">支払方法　コンビニ払い</div>
                     </ul>
-                    <form id="purchaseForm" action="{{ route('items.purchase', ['item' => $item->id]) }}" method="POST">
+                    <form id="purchaseForm" method="POST">
                     @csrf
-                    <input type="hidden" name="paymentIntentId" value="{{ $paymentIntentId }}">
-                    <!-- 他のフォーム要素など -->
-                    <button type="submit" class="buy-button">購入する</button>
+                    <button type="button" class="buy-button">購入する</button>
                     </form>
                 </div>
             </div>
@@ -75,40 +73,6 @@
     card.mount('#cardNumberElement');
     card.mount('#expiryDateElement');
     card.mount('#cvvElement');
-
-    document.getElementById('purchaseForm').addEventListener('submit', async function (event) {
-    event.preventDefault();
-    selectPaymentMethod();
-
-    const { token, error } = await stripe.createToken(card);
-
-    if (error) {
-            // エラー処理
-            console.error(error);
-        } else {
-            // 生成されたトークンをフォームに追加
-            const form = document.getElementById('purchaseForm');
-            const tokenInput = document.createElement('input');
-            tokenInput.type = 'hidden';
-            tokenInput.name = 'stripeToken';
-            tokenInput.value = token.id;
-            form.appendChild(tokenInput);
-
-            // 支払方法をフォームに追加
-            const paymentMethodInput = document.createElement('input');
-            paymentMethodInput.type = 'hidden';
-            paymentMethodInput.name = 'paymentMethod';
-            if (document.querySelector('input[name="paymentMethod"][value="card"]').checked) {
-                paymentMethodInput.value = 'card';
-            } else {
-                paymentMethodInput.value = 'konbini';
-            }
-            form.appendChild(paymentMethodInput)
-
-            // フォームをサーバーサイドに送信
-            form.submit();
-    }
-});
 
     function showPaymentOptions() {
         var paymentMethodSection = document.querySelector('.selectPaymentMethod');
@@ -153,30 +117,6 @@
             selectedPaymentMethod.innerText = '支払方法　クレジットカード払い';
         }
     }
-
-    function initiatePurchase() {
-        stripe.confirmCardPayment(
-            "{{ $clientSecret }}",
-            {
-                payment_method: {
-                    card: card,
-                    billing_details: {
-                    // お客様の請求先情報
-                    name: 'John Doe',
-                    },
-                },
-            }
-        ).then(function(result) {
-            if (result.error) {
-                console.error(result.error);
-            } else {
-                // ここでフォームをサーバーサイドに送信
-                const form = document.getElementById('purchaseForm');
-                form.submit();
-            }
-        });
-    }
-
 </script>
 
 @endsection
