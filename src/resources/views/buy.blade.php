@@ -38,9 +38,11 @@
                         <li class="total_price">支払金額￥{{ $item->price }}</li>
                         <div class="way" id="selectedPaymentMethod">支払方法　コンビニ払い</div>
                     </ul>
-                    <form id="purchaseForm" method="POST">
-                    @csrf
-                    <button type="button" class="buy-button">購入する</button>
+                    <form id="purchaseForm" method="POST" action="{{ route('processPayment', $item->id) }}">
+                        @csrf
+                        <input type="hidden" name="paymentMethod" id="paymentMethod" value="konbini">
+                        <!-- 他のフォーム要素を追加 -->
+                        <button type="submit" id="submitPayment" class="buy-button">購入する</button>
                     </form>
                 </div>
             </div>
@@ -62,8 +64,10 @@
 
 
         <div class="cardDetails" id="cardDetails" style="display: none;">
-            <label for="cardNumber">カード番号 有効期限 セキュリティコード</label>
+            <label for="cardNumberElement">カード番号 有効期限 セキュリティコード</label>
             <div class="cardNumberElement" id="cardNumberElement"></div>
+            <div class="expiryDateElement" id="expiryDateElement"></div>
+            <div class="#cvvElement" id="#cvvElement"></div>
         </div>
 
 <script>
@@ -73,6 +77,10 @@
     card.mount('#cardNumberElement');
     card.mount('#expiryDateElement');
     card.mount('#cvvElement');
+
+    const form = document.getElementById('purchaseForm');
+    const paymentMethodInput = document.getElementById('paymentMethod');
+    const submitButton = document.getElementById('submitPayment');
 
     function showPaymentOptions() {
         var paymentMethodSection = document.querySelector('.selectPaymentMethod');
@@ -117,6 +125,27 @@
             selectedPaymentMethod.innerText = '支払方法　クレジットカード払い';
         }
     }
+
+        form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+
+    const { token, error } = await stripe.createToken(card);
+
+    if (error) {
+        // エラー処理
+        console.error(error.message);
+    } else {
+        // トークンをサーバーサイドに送信
+        handlePayment(token.id);
+    }
+});
+
+    function handlePayment(paymentMethod) {
+    paymentMethodInput.value = paymentMethod;
+
+    // フォームの送信
+    form.submit();
+}
 </script>
 
 @endsection
