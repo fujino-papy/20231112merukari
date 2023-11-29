@@ -6,17 +6,6 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BuyController;
 
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,6 +17,7 @@ Route::get('/exhibit', [ItemController::class,'exhibit']);
 Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 Route::get('/item/{id}', [ItemController::class, 'detail'])->name('detail');
-Route::post('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage');
+Route::get('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage');
 Route::post('/buy/payment/{item_id}', [BuyController::class, 'processPayment'])->name('processPayment');
+Route::post('/pay', [BuyController::class, 'pay'])->name('pay');
 Route::get('/buy/complete', [BuyController::class, 'buyComplete'])->name('buyComplete');

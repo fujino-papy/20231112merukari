@@ -12,7 +12,7 @@
         <p class="item_name">{{ $item->name }}</p>
             <p class="item_price">￥{{ $item->price }}</p>
             @auth
-        <form action="{{ route('buyPage',['item_id' => $item->id]) }}" method="post">
+        <form action="{{ route('buyPage',['item_id' => $item->id]) }}" method="get">
             @csrf
             <button type="submit" class="buyPage">購入する</button>
         </form>
