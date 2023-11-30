@@ -12,6 +12,11 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::paginate(40); // 1ページに5つのアイテムを表示すると仮定
+
+        foreach ($items as $item) {
+            $item->isSoldOut = $item->sold; // データベースの sold カラムの値を isSoldOut プロパティにセット
+        }
+
         return view('index', compact('items'));
     }
 

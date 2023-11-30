@@ -14,6 +14,9 @@
                 <div class="item-details">
                     <p class="item_name">{{ $item->name }}</p>
                     <p class="item_price">Price: ￥{{ $item->price }}</p>
+                    @if($item->isSoldOut)
+                    <p class="sold-out">Sold Out</p>
+                    @endif
                     <!-- Add any other details you want to display -->
                 </div>
                 <a  class="detail"  href="{{ route('detail', ['id' => $item->id]) }}" class="detail">商品詳細</a>

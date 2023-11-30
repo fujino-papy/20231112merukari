@@ -12,14 +12,24 @@
         <p class="item_name">{{ $item->name }}</p>
             <p class="item_price">￥{{ $item->price }}</p>
             @auth
-        <form action="{{ route('buyPage',['item_id' => $item->id]) }}" method="get">
-            @csrf
-            <button type="submit" class="buyPage">購入する</button>
-        </form>
+            @if($item->sold)
+                <button type="button" class="buyPage" disabled>Sold Out</button>
+            @else
+                <form action="{{ route('buyPage',['item_id' => $item->id]) }}" method="get">
+                    @csrf
+                    <button type="submit" class="buyPage">購入する</button>
+                </form>
+            @endif
         @else
-        <form action="{{ route('login') }}" method="get">
-            <button class="buyPage" class="buy">購入する</button>
-        </form>
+            <form action="{{ route('login') }}" method="get">
+                <button class="buyPage" class="buy" @if($item->sold) disabled @endif>
+                    @if($item->sold)
+                        Sold Out
+                    @else
+                        購入する
+                    @endif
+                </button>
+            </form>
         @endauth
 
             <p class="summary">商品説明</p>

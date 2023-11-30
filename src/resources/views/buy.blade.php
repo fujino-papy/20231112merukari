@@ -40,6 +40,7 @@
                     </ul>
                     <form action="{{ asset('pay') }}" method="POST">
                         {{ csrf_field() }}
+                        <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="hidden" name="item_price" value="{{ $item->price }}">
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
