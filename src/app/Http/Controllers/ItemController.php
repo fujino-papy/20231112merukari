@@ -40,6 +40,7 @@ class ItemController extends Controller
         ]);
 
         $imagePath = $request->file('image')->store('uploads', 'public');
+        $productImagePath = $request->file('product_image')->store('products');
 
         $item = new Item();
         $item->users_id = auth()->user()->id; // 例: ログインユーザーのIDを取得する方法に応じて修正
@@ -47,7 +48,7 @@ class ItemController extends Controller
         $item->conditions_id = $request->input('condition_id');
         $item->name = $request->input('name');
         $item->summary = $request->input('summary');
-        $item->image_url = '/storage/' . $imagePath; // publicディレクトリ内にアップロードされた画像へのパス
+        $item->image_url = '/storage/' . $productImagePath; // publicディレクトリ内にアップロードされた画像へのパス
         $item->price = $request->input('price');
         $item->save();
 

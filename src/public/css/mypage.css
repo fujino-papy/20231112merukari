@@ -1,0 +1,97 @@
+.mypage {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile {
+    width: 100%;
+    height: 10rem;
+    background-color: #eee;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    position: relative;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.profile-img::after {
+    content: "プロフィール画像";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    /* テキストが折り返されないようにする */
+}
+
+.profile-name {
+    font-size: 1.5rem;
+}
+
+.items-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.item {
+    width: 15%;
+    margin: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.item img {
+    display: block;
+    max-width: 100%;
+    height: 60%;
+    object-fit: cover;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.item-details {
+    text-align: center;
+}
+
+
+.detail {
+    display: block;
+    line-height: 10px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+.item_name {
+    margin: 0;
+}
+
+.item_price {
+    margin: 0;
+}
+
+.sold-out {
+    color: red;
+}
+
+.links {
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BuyController;
+use App\Http\Controllers\MypageController;
 
 
 Route::get('/', function () {
@@ -21,3 +22,6 @@ Route::get('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage')
 Route::post('/buy/payment/{item_id}', [BuyController::class, 'processPayment'])->name('processPayment');
 Route::post('/pay', [BuyController::class, 'pay'])->name('pay');
 Route::get('/buy/complete', [BuyController::class, 'buyComplete'])->name('buyComplete');
+Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
+Route::get('/profile', [MypageController::class, 'profile'])->name('profile');
+Route::post('profile/edit',[MypageController::class,'profileEdit'])->name('profileEdit');
