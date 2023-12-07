@@ -11,6 +11,22 @@
         <div class="item-details">
         <p class="item_name">{{ $item->name }}</p>
             <p class="item_price">￥{{ $item->price }}</p>
+            <div class="favorite_button">
+                @if(auth()->check())
+                    @if($isFavorite)
+                        <form class="favoriteDelete" action="{{ route('favoriteDelete', $item->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="ster"><img class="ster_img" src="{{ asset('img/ster_on.png') }}" alt="on"></button>
+                        </form>
+                    @else
+                        <form class="favorite" action="{{ route('favorite', $item->id) }}" method="post">
+                            @csrf
+                            <button type="submit" class="ster"><img class="ster_img" src="{{ asset('img/ster_off.png') }}" alt="off"></button>
+                        </form>
+                    @endif
+                @endif
+                </div>
             @auth
             @if($item->sold)
                 <button type="button" class="buyPage" disabled>Sold Out</button>

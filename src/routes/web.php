@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FavoriteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
@@ -25,3 +26,5 @@ Route::get('/buy/complete', [BuyController::class, 'buyComplete'])->name('buyCom
 Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
 Route::get('/profile', [MypageController::class, 'profile'])->name('profile');
 Route::post('profile/edit',[MypageController::class,'profileEdit'])->name('profileEdit');
+Route::post('/favorite/{item_id}', [FavoriteController::class, 'favorite'])->name('favorite');
+Route::delete('/favorite/delete/{item_id}', [FavoriteController::class, 'favoriteDelete'])->name('favoriteDelete');

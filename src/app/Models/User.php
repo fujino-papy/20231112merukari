@@ -55,4 +55,8 @@ class User extends Authenticatable
 
         // 'status'カラムのデフォルト値を空の文字列に設定
     ];
+
+    public function favorites() {
+        return $this->hasMany(Favorite::class, 'users_id', 'id');
+    }
 }

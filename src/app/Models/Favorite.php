@@ -13,4 +13,8 @@ class Favorite extends Model
         'users_id',
         'shops_id',
     ];
+
+    public function item() {
+        return $this->belongsTo(Item::class, 'items_id', 'id');
+    }
 }

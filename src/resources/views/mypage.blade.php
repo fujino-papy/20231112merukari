@@ -27,6 +27,7 @@
         @foreach($sellingItems as $item)
             <div class="item">
                 <img class="item_img" src="{{ asset($item->image_url) }}" alt="{{ $item->name }}">
+                                <a class="detail" href="{{ route('detail', ['id' => $item->id]) }}" class="detail">商品詳細</a>
                 <div class="item-details">
                     <p class="item_name">{{ $item->name }}</p>
                     <p class="item_price">Price: ￥{{ $item->price }}</p>
@@ -34,7 +35,6 @@
                         <p class="sold-out">Sold Out</p>
                     @endif
                 </div>
-                <a class="detail" href="{{ route('detail', ['id' => $item->id]) }}" class="detail">商品詳細</a>
             </div>
         @endforeach
         </div>
@@ -46,12 +46,12 @@
         @foreach($boughtItemsDetails as $item)
             <div class="item">
                 <img class="item_img" src="{{ asset($item->image_url) }}" alt="{{ $item->name }}">
+                <a class="detail" href="{{ route('detail', ['id' => $item->id]) }}" class="detail">商品詳細</a>
                 <div class="item-details">
                     <p class="item_name">{{ $item->name }}</p>
                     <p class="item_price">Price: ￥{{ $item->price }}</p>
                     <!-- その他の商品詳細情報の表示 -->
                 </div>
-                <a class="detail" href="{{ route('detail', ['id' => $item->id]) }}" class="detail">商品詳細</a>
             </div>
         @endforeach
     </div>
