@@ -26,7 +26,12 @@
                         </form>
                     @endif
                 @endif
-                </div>
+                <a href="{{ route('comment', ['item_id' => $item->id]) }}">
+                    <img class="comment_img" src="{{ asset('img/comment.png') }}" alt="Comment">
+                </a>
+            </div>
+            
+
             @auth
             @if($item->sold)
                 <button type="button" class="buyPage" disabled>Sold Out</button>

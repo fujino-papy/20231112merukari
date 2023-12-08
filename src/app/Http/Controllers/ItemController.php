@@ -66,5 +66,4 @@ class ItemController extends Controller
         }
         return view('detail', ['item' => $item, 'isFavorite' => $isFavorite]);
     }
-    
 }

@@ -6,7 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BuyController;
 use App\Http\Controllers\MypageController;
-
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,3 +28,5 @@ Route::get('/profile', [MypageController::class, 'profile'])->name('profile');
 Route::post('profile/edit',[MypageController::class,'profileEdit'])->name('profileEdit');
 Route::post('/favorite/{item_id}', [FavoriteController::class, 'favorite'])->name('favorite');
 Route::delete('/favorite/delete/{item_id}', [FavoriteController::class, 'favoriteDelete'])->name('favoriteDelete');
+Route::get('/comment/{item_id}', [CommentController::class, 'comment'])->name('comment');
+Route::post('/comment', [CommentController::class, 'commentPost'])->name('commentPost');

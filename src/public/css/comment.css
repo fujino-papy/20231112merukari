@@ -1,0 +1,41 @@
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-info {
+    margin-top: 20px;
+}
+
+.product-images {
+    margin-top: 20px;
+}
+
+.comment {
+    margin-top: 20px;
+}
+
+.comment-body {
+    margin-left: 30px;
+}
+
+.fa-circle-o {
+    color: #ccc;
+    font-size: 16px;
+}
+
+.ster_img{
+    width: 50px;
+    border: none;
+}
+
+.ster{
+    border: none;
+    background-color: #fff;
+    float: left;
+}
+
+.comment_img{
+    width: 50px;
+}

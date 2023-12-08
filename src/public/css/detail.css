@@ -78,3 +78,18 @@
 .item_condition {
     margin-bottom: 10px;
 }
+
+.ster_img {
+    width: 50px;
+    border: none;
+}
+
+.ster {
+    border: none;
+    background-color: #fff;
+    float: left;
+}
+
+.comment_img {
+    width: 50px;
+}
