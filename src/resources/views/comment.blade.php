@@ -34,18 +34,35 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-6">
-            <h2>コメント</h2>
-            <form action="{{ route('commentPost') }}" method="post">
-                @csrf
-                <input type="hidden" name="product_id" value="{{ $item->id }}">
-                <div class="form-group">
-                    <label for="comment">コメント</label>
-                    <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">コメントを送信する</button>
-            </form>
-            
+
+        <div class="comments">
+            @foreach($comments as $comment)
+            <div class="comment">
+                <img class="user_img" src="{{ $comment->user->img_url }}" alt="プロフィール画像">
+                <span class="user_name">{{ $comment->user->name }}</span>
+                <p class="user_comment">{{ $comment->comment }}</p>
+            </div>
+        @endforeach
         </div>
+
+    <div class="col-md-6">
+    <h2>コメント</h2>
+
+    @if(auth()->check())
+        <!-- ログインしている場合、コメント送信フォームを表示 -->
+        <form action="{{ route('commentPost') }}" method="post">
+            @csrf
+            <input type="hidden" name="item_id" value="{{ $item->id }}">
+            <div class="form-group">
+                <label for="comment">コメント</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">コメントを送信する</button>
+        </form>
+    @else
+        <!-- ログインしていない場合、ログイン画面へ遷移するボタンを表示 -->
+        <a href="{{ route('login') }}" class="btn btn-primary">ログインしてコメントする</a>
+    @endif
+</div>
 </div>
 @endsection

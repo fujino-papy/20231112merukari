@@ -56,14 +56,17 @@ class ItemController extends Controller
     }
 
     public function detail($id) {
-        $item = Item::find($id);
-        $userFavorites = auth()->user()->favorites;
+    $item = Item::find($id);
+    $isFavorite = false;
 
-        $isFavorite = false;
+    if(auth()->check()) {
+        $userFavorites = auth()->user()->favorites;
 
         if($userFavorites && $userFavorites->contains('items_id', $item->id)) {
             $isFavorite = true;
         }
-        return view('detail', ['item' => $item, 'isFavorite' => $isFavorite]);
     }
+
+    return view('detail', ['item' => $item, 'isFavorite' => $isFavorite]);
+}
 }

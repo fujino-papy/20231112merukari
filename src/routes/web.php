@@ -18,7 +18,7 @@ Route::get('/exhibit', [ItemController::class,'exhibit']);
 
 Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
-Route::get('/item/{id}', [ItemController::class, 'detail'])->name('detail');
+Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('detail');
 Route::get('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage');
 Route::post('/buy/payment/{item_id}', [BuyController::class, 'processPayment'])->name('processPayment');
 Route::post('/pay', [BuyController::class, 'pay'])->name('pay');
