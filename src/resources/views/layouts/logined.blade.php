@@ -18,6 +18,14 @@
         <a class="header__logo" href="/">
             COACHTECH
         </a>
+
+        <div class="header-search">
+                <form action="{{ route('search') }}" method="GET">
+                    <input type="text" name="query" placeholder="検索...">
+                    <button type="submit">検索</button>
+                </form>
+        </div>
+
         <nav>
             <ul class="header-nav">
                 @if (Auth::check())

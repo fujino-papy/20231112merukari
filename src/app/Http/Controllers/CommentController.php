@@ -24,7 +24,6 @@ class CommentController extends Controller
 
         // コメント一覧を取得（ここでは3件取得している例）
         $comments = Comment::where('items_id', $item->id)
-                            ->limit(3)
                             ->get();
         return view('comment', ['item' => $item, 'isFavorite' => $isFavorite, 'comments' => $comments]);
     }

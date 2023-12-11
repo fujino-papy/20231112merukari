@@ -9,15 +9,42 @@ use App\Models\Item;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $items = Item::paginate(40); // 1ページに5つのアイテムを表示すると仮定
-
-        foreach ($items as $item) {
-            $item->isSoldOut = $item->sold; // データベースの sold カラムの値を isSoldOut プロパティにセット
+        // 検索クエリが存在するかを確認
+        if ($request->has('query')) {
+            return $this->search($request);
         }
 
-        return view('index', compact('items'));
+        // おすすめアイテムを取得（例としてランダムに取得）
+        $recommendedItems = Item::inRandomOrder()->limit(40)->get();
+
+        // ログインユーザーがお気に入りしているアイテムを取得
+        $favoriteItems = auth()->check() ? auth()->user()->favorites : collect();
+
+        // 通常のアイテム一覧を取得
+        $items = Item::paginate(40);
+
+        foreach ($items as $item) {
+            $item->isSoldOut = $item->sold;
+        }
+
+        return view('index', compact('items', 'recommendedItems', 'favoriteItems'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $items = Item::where('name', 'like', '%' . $query . '%')->paginate(40);
+
+        $favoriteItems = auth()->check() ? auth()->user()->favorites : collect();
+
+        foreach ($items as $item) {
+            $item->isSoldOut = $item->sold;
+        }
+
+        return view('index', compact('items', 'query', 'favoriteItems'));
     }
 
     public function exhibit()

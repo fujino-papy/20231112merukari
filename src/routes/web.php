@@ -15,6 +15,7 @@ Route::get('/', function () {
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/',[ItemController::class,'index'])->name('index');
 Route::get('/exhibit', [ItemController::class,'exhibit']);
+Route::get('/search', [ItemController::class, 'search'])->name('search');
 
 Route::get('/items/create', [ItemController::class, 'create'])->name('items.create');
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
