@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreItemRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Condition;
@@ -19,8 +20,11 @@ class ItemController extends Controller
         // おすすめアイテムを取得（例としてランダムに取得）
         $recommendedItems = Item::inRandomOrder()->limit(40)->get();
 
-        // ログインユーザーがお気に入りしているアイテムを取得
-        $favoriteItems = auth()->check() ? auth()->user()->favorites : collect();
+        // ログインユーザーがお気に入りしているアイテムのIDを取得
+        $favoriteItemIds = auth()->check() ? auth()->user()->favorites->pluck('items_id') : collect();
+
+        // お気に入りしているアイテムの詳細情報を取得
+        $favoriteItems = Item::whereIn('id', $favoriteItemIds)->get();
 
         // 通常のアイテム一覧を取得
         $items = Item::paginate(40);
@@ -31,7 +35,6 @@ class ItemController extends Controller
 
         return view('index', compact('items', 'recommendedItems', 'favoriteItems'));
     }
-
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -54,28 +57,18 @@ class ItemController extends Controller
         return view('exhibit', compact('categories', 'conditions'));
     }
 
-    public function store(Request $request)
+    public function store(StoreItemRequest $request)
     {
-        // バリデーションのルールを追加
-        $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'category_id' => 'required|exists:categories,id',
-            'condition_id' => 'required|exists:conditions,id',
-            'name' => 'required|string|max:20',
-            'summary' => 'required|string|max:200',
-            'price' => 'required|integer|max:999999999',
-        ]);
-
         $imagePath = $request->file('image')->store('uploads', 'public');
         $productImagePath = $request->file('product_image')->store('products');
 
         $item = new Item();
-        $item->users_id = auth()->user()->id; // 例: ログインユーザーのIDを取得する方法に応じて修正
+        $item->users_id = auth()->user()->id;
         $item->categories_id = $request->input('category_id');
         $item->conditions_id = $request->input('condition_id');
         $item->name = $request->input('name');
         $item->summary = $request->input('summary');
-        $item->image_url = '/storage/' . $productImagePath; // publicディレクトリ内にアップロードされた画像へのパス
+        $item->image_url = '/storage/' . $productImagePath;
         $item->price = $request->input('price');
         $item->save();
 

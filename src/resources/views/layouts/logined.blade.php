@@ -20,17 +20,19 @@
         </a>
 
         <div class="header-search">
-                <form action="{{ route('search') }}" method="GET">
-                    <input type="text" name="query" placeholder="検索...">
-                    <button type="submit">検索</button>
+                <form class="search_form" action="{{ route('search') }}" method="GET">
+                    <label class="label">
+                    <input class="search_input" type="text" name="query" placeholder="なにかお探しですか？">
+                    </label>
+                    <button class="search_button" type="submit"></button>
                 </form>
         </div>
 
-        <nav>
-            <ul class="header-nav">
+        <nav class="header-nav">
+            <ul class="header-links">
                 @if (Auth::check())
             <li class="header-nav__item">
-                <form class="form" action="/logout" method="post">
+                <form class="header-nav_form" action="/logout" method="post">
                 @csrf
                 <button class="header-nav__button">ログアウト</button>
                 </form>

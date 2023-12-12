@@ -7,8 +7,8 @@
 @section('content')
 
     <div class="tabs">
-        <button class="tab-btn" onclick="showItems('index')">おすすめ</button>
-        <button class="tab-btn" onclick="showItems('favorite')">お気に入り</button>
+        <button class="index-btn" onclick="showItems('index')">おすすめ</button>
+        <button class="fav-btn" onclick="showItems('favorite')">マイリスト</button>
     </div>
 
     <div class="items" id="favorite-items" style="display: none;">

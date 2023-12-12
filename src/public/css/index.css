@@ -25,6 +25,33 @@
     text-align: center;
 }
 
+.tabs{
+    border-bottom: solid 1px #000;
+    margin-top: 15px;
+}
+.index-btn{
+    margin-left: 5%;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+}
+
+.index-btn:hover {
+    color: red;
+    background-color: #fff;
+}
+
+.fav-btn{
+    margin-left: 2%;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+}
+
+.fav-btn:hover {
+    color: red;
+    background-color: #fff;
+}
 
 .detail {
     display: block;
@@ -44,8 +71,9 @@
 .item_price{
     margin: 0;
 }
-button:hover {
-    background-color: #45a049;
+.index-btn:hover {
+    color: red;
+    background-color: #fff;
 }
 
 .pagination {
@@ -72,7 +100,7 @@ button:hover {
     }
 }
 
-@media (max-width: 765px) {
+@media (max-width: 768px) {
     .item {
         width: 40%;
         /* 画面幅が765px以下の場合、2つで折り返し */

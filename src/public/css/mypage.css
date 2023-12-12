@@ -33,6 +33,34 @@
     /* テキストが折り返されないようにする */
 }
 
+.tabs {
+    border-bottom: solid 1px #000;
+    margin-top: 15px;
+}
+
+.exhibit-btn {
+    margin-left: 5%;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+}
+
+.exhibit-btn:hover {
+    color: red;
+    background-color: #fff;
+}
+
+.buy-btn {
+    margin-left: 2%;
+    border: none;
+    background-color: #fff;
+    font-weight: bold;
+}
+
+.buy-btn:hover {
+    color: red;
+    background-color: #fff;
+}
 .profile-name {
     font-size: 1.5rem;
 }
@@ -95,4 +123,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 1150px) {
+    .item {
+        width: 20%;
+        /* 画面幅が1150px以下の場合、4つで折り返し */
+    }
+}
+
+@media (max-width: 768px) {
+    .item {
+        width: 40%;
+        /* 画面幅が765px以下の場合、2つで折り返し */
+    }
 }

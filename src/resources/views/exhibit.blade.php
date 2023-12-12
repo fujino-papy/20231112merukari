@@ -13,7 +13,9 @@
 <body class="exhibit">
     <header class="header">
         <div class="header__inner">
-            <h1 class="ttl">Coachtech</h1>
+            <a class="header__logo" href="/">
+            COACHTECH
+        </a>
         </div>
     </header>
 

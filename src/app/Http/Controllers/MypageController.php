@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\MyPageRequest;
 use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SoldItem;
 use Illuminate\Support\Facades\Storage;
 
-class MypageController extends Controller
+class MyPageController extends Controller
 {
 
     public function mypage()
@@ -38,17 +38,8 @@ class MypageController extends Controller
         return view('profile');
     }
 
-    public function profileEdit(Request $request)
+    public function profileEdit(MypageRequest $request)
     {
-        // フォームデータのバリデーション
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'post' => 'nullable|string|max:255',
-            'address' => 'nullable|string|max:255',
-            'building_name' => 'nullable|string|max:255',
-            'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 必要に応じてファイルタイプとサイズを調整
-        ]);
-
         // 認証済みユーザーを取得
         $user = Auth::user();
 
@@ -57,7 +48,7 @@ class MypageController extends Controller
         $user->post = $request->input('post');
         $user->address = $request->input('address');
         $user->building_name = $request->input('building_name');
-        $profileImagePath = $request->file('img_url')->store('profiles', 'public');
+
         // プロフィール画像のアップロードを処理
         if ($request->hasFile('img_url')) {
             // 以前のプロフィール画像が存在する場合は削除
@@ -66,6 +57,7 @@ class MypageController extends Controller
             }
 
             // 新しいプロフィール画像を保存
+            $profileImagePath = $request->file('img_url')->store('profiles', 'public');
             $user->img_url = '/storage/' . $profileImagePath; // publicディレクトリ内にアップロードされた画像へのパス
         }
 

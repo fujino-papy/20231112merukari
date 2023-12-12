@@ -2,6 +2,17 @@
 .header{
     min-width: 500px;
 }
+
+.header__inner{
+    background-color: #000;
+}
+
+.header__logo{
+    color: #fff;
+    text-decoration: none;
+        font-weight: bold;
+            font-size: 24px;
+}
 .ttl{
     margin: 0;
     background-color: black;

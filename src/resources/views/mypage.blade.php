@@ -18,8 +18,8 @@
 
 
     <div class="tabs">
-    <button class="tab-btn" onclick="showItems('selling')">出品した商品</button>
-    <button class="tab-btn" onclick="showItems('buying')">購入した商品</button>
+    <button class="exhibit-btn" onclick="showItems('selling')">出品した商品</button>
+    <button class="buy-btn" onclick="showItems('buying')">購入した商品</button>
     </div>
 
     <div class="items" id="selling-items">
