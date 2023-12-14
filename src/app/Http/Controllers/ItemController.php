@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
+use App\Models\Comment;
 
 class ItemController extends Controller
 {
@@ -75,18 +76,29 @@ class ItemController extends Controller
         return redirect('/');
     }
 
-    public function detail($id) {
-    $item = Item::find($id);
-    $isFavorite = false;
+    public function detail($id)
+    {
+        $item = Item::find($id);
+        $isFavorite = false;
+        $favoriteCount = 0;
+        $commentCount = 0;
 
-    if(auth()->check()) {
-        $userFavorites = auth()->user()->favorites;
-
-        if($userFavorites && $userFavorites->contains('items_id', $item->id)) {
-            $isFavorite = true;
+        if (auth()->check()) {
+            $favoriteItemIds = auth()->user()->favorites->pluck('items_id');
+            $favoriteItems = Item::whereIn('id', $favoriteItemIds)->get();
+            $favoriteCount = count($favoriteItems);
+            $isFavorite = $favoriteItemIds->contains($item->id);
         }
-    }
 
-    return view('detail', ['item' => $item, 'isFavorite' => $isFavorite]);
-}
+        // コメントが存在する場合のみ count() を呼び出す
+        $comments = Comment::where('items_id', $item->id)->get();
+        $commentCount = count($comments);
+
+        return view('detail', [
+            'item' => $item,
+            'isFavorite' => $isFavorite,
+            'favoriteCount' => $favoriteCount,
+            'commentCount' => $commentCount,
+        ]);
+    }
 }

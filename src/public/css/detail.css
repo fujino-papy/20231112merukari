@@ -79,6 +79,10 @@
     margin-bottom: 10px;
 }
 
+.favorite_button{
+    height: 60px;
+}
+
 .ster_img {
     width: 50px;
     border: none;
@@ -92,4 +96,12 @@
 
 .comment_img {
     width: 50px;
+}
+
+.favorite_count{
+margin-left: 25px;
+}
+
+.comment_count{
+margin-left: 40px;
 }

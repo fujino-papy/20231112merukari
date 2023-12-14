@@ -29,4 +29,9 @@ class Item extends Model
     {
         return $this->belongsTo(Condition::class, 'conditions_id');
     }
+
+    public function comment()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

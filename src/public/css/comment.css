@@ -22,22 +22,26 @@
     width: 50%;
 }
 
-.comment {
-    margin-top: 20px;
-}
-
-.comment-body {
-    margin-left: 30px;
-}
 
 .fa-circle-o {
     color: #ccc;
     font-size: 16px;
 }
 
-.favorite_button{
-    width: 50px;
+.icon{
+    width: 50%;
 }
+
+.favorite_buttons_container {
+    display: flex;
+    align-items: center;
+}
+
+.comment_info {
+    margin-top: 10px;
+    /* 適切なマージンを設定してください */
+}
+
 .ster_img{
     width: 50px;
     border: none;
@@ -63,7 +67,7 @@
 
 .comments{
     overflow-y: auto;
-    max-height: 330px;
+    max-height: 320px;
 }
 .comment_form {
     position: relative;
@@ -97,4 +101,16 @@
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+.favorite_button {
+    height: 60px;
+}
+
+.favorite_count {
+    margin-left: 25px;
+}
+
+.comment_count {
+    margin-left: 40px;
 }

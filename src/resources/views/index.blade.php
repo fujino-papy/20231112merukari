@@ -13,6 +13,10 @@
 
     <div class="items" id="favorite-items" style="display: none;">
         <div class="items-container">
+
+            @guest
+                <p>ログインもしくは会員登録してください</p>
+            @else
             @foreach($favoriteItems as $item)
                 <div class="item">
                     <img class="item_img" src="{{ asset($item->image_url) }}" alt="{{ $item->name }}">
@@ -27,6 +31,7 @@
                     </div>
                 </div>
             @endforeach
+            @endguest
         </div>
     </div>
 

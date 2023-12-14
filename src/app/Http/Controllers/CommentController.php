@@ -9,9 +9,10 @@ class CommentController extends Controller
 {
     public function comment($id)
     {
-    {
         $item = Item::find($id);
         $isFavorite = false;
+        $commentCount = 0;
+        $favoriteCount = 0; // お気に入りの数を初期化
 
         if (auth()->check()) {
             $userFavorites = auth()->user()->favorites;
@@ -19,13 +20,22 @@ class CommentController extends Controller
             if ($userFavorites && $userFavorites->contains('items_id', $item->id)) {
                 $isFavorite = true;
             }
+
+            // お気に入りの数を取得
+            $favoriteCount = count($userFavorites);
         }
 
-        // コメント一覧を取得（ここでは3件取得している例）
-        $comments = Comment::where('items_id', $item->id)
-                            ->get();
-        return view('comment', ['item' => $item, 'isFavorite' => $isFavorite, 'comments' => $comments]);
-    }
+        // コメントの数を取得
+        $comments = Comment::where('items_id', $item->id)->get();
+        $commentCount = count($comments);
+
+        return view('comment', [
+            'item' => $item,
+            'isFavorite' => $isFavorite,
+            'comments' => $comments,
+            'commentCount' => $commentCount,
+            'favoriteCount' => $favoriteCount, // お気に入りの数をビューファイルに渡す
+        ]);
     }
 
     public function commentPost(CommentRequest $request)
