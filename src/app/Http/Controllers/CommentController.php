@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use \App\Http\Requests\CommentRequest;
 use App\Models\Item;
 use App\Models\Comment;
+use App\Models\Favorite;
 class CommentController extends Controller
 {
     public function comment($id)
@@ -14,6 +15,7 @@ class CommentController extends Controller
         $commentCount = 0;
         $favoriteCount = 0; // お気に入りの数を初期化
 
+        // ログインしているかどうかで処理を分ける
         if (auth()->check()) {
             $userFavorites = auth()->user()->favorites;
 
@@ -22,7 +24,10 @@ class CommentController extends Controller
             }
 
             // お気に入りの数を取得
-            $favoriteCount = count($userFavorites);
+            $favoriteCount = Favorite::where('items_id', $item->id)->count();
+        } else {
+            // ログインしていない場合はデータベースから直接お気に入りの数を取得
+            $favoriteCount = Favorite::where('items_id', $item->id)->count();
         }
 
         // コメントの数を取得

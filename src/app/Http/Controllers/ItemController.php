@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Item;
 use App\Models\Comment;
+use App\Models\Favorite;
 
 class ItemController extends Controller
 {
@@ -83,12 +84,15 @@ class ItemController extends Controller
         $favoriteCount = 0;
         $commentCount = 0;
 
+        // ログインしている場合としていない場合で処理を分ける
         if (auth()->check()) {
             $favoriteItemIds = auth()->user()->favorites->pluck('items_id');
             $favoriteItems = Item::whereIn('id', $favoriteItemIds)->get();
-            $favoriteCount = count($favoriteItems);
             $isFavorite = $favoriteItemIds->contains($item->id);
         }
+
+        // データベースから直接お気に入りの数を取得
+        $favoriteCount = Favorite::where('items_id', $item->id)->count();
 
         // コメントが存在する場合のみ count() を呼び出す
         $comments = Comment::where('items_id', $item->id)->get();

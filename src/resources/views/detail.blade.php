@@ -12,30 +12,33 @@
         <p class="item_name">{{ $item->name }}</p>
         <p class="item_price">￥{{ $item->price }}</p>
         <div class="icon">
-    <div class="favorite_button">
-            @if(auth()->check())
+            <div class="favorite_button">
                 <div class="favorite_buttons_container">
-                    @if($isFavorite)
-                        <form class="favoriteDelete" action="{{ route('favoriteDelete', $item->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="ster"><img class="ster_img" src="{{ asset('img/ster_on.png') }}" alt="on"></button>
-                        </form>
+                    @if(auth()->check())
+                        @if($isFavorite)
+                            <form class="favoriteDelete" action="{{ route('favoriteDelete', $item->id) }}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="ster"><img class="ster_img" src="{{ asset('img/ster_on.png') }}" alt="on"></button>
+                            </form>
+                        @else
+                            <form class="favorite" action="{{ route('favorite', $item->id) }}" method="post">
+                                @csrf
+                                <button type="submit" class="ster"><img class="ster_img" src="{{ asset('img/ster_off.png') }}" alt="off"></button>
+                            </form>
+                        @endif
+                        <a class="comment_icon" href="{{ route('comment', ['item_id' => $item->id]) }}"><img class="comment_img" src="{{ asset('img/comment.png') }}" alt="Comment"></a>
                     @else
-                        <form class="favorite" action="{{ route('favorite', $item->id) }}" method="post">
-                            @csrf
-                            <button type="submit" class="ster"><img class="ster_img" src="{{ asset('img/ster_off.png') }}" alt="off"></button>
-                        </form>
+                        <img class="ster_img" src="{{ asset('img/ster_off.png') }}" alt="off">
+                        <a class="comment_icon" href="{{ route('comment', ['item_id' => $item->id]) }}"><img class="comment_img" src="{{ asset('img/comment.png') }}" alt="Comment"></a>
                     @endif
-                    <a class="comment_icon" href="{{ route('comment', ['item_id' => $item->id]) }}"><img class="comment_img" src="{{ asset('img/comment.png') }}" alt="Comment"></a>
                 </div>
-            @endif
-        </div>
+            </div>
             <div class="counts">
             <a class="favorite_count">{{ $favoriteCount }}</a>
             <a class="comment_count">{{ $commentCount }}</a>
             </div>
-    </div>
+        </div>
 
         @auth
             @if($item->sold)
