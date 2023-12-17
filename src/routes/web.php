@@ -21,8 +21,9 @@ Route::get('/items/create', [ItemController::class, 'create'])->name('items.crea
 Route::post('/items', [ItemController::class, 'store'])->name('items.store');
 Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('detail');
 Route::get('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage');
-Route::post('/pay', [BuyController::class, 'pay'])->name('pay');
-Route::get('/buy/complete', [BuyController::class, 'buyComplete'])->name('buyComplete');
+Route::post('/konbiniPay', [BuyController::class, 'konbiniPay'])->name('konbiniPay');
+Route::post('/cardPay', [BuyController::class, 'cardPay'])->name('cardPay');
+Route::get('/buyComplete', [BuyController::class, 'buyComplete'])->name('buyComplete');
 Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
 Route::get('/profile', [MypageController::class, 'profile'])->name('profile');
 Route::post('profile/edit',[MypageController::class,'profileEdit'])->name('profileEdit');

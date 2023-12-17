@@ -7,6 +7,13 @@
 @endsection
 
 @section('content')
+
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="item-container">
         <div class="item">
@@ -52,15 +59,15 @@
                     </ul>
 
                     <!-- コンビニ払いのボタン -->
-                    <form action="{{ asset('pay') }}" method="POST" id="konbiniForm">
-                        {{ csrf_field() }}
+                    <form action="{{ route('konbiniPay') }}" method="POST" id="konbiniForm">
+                        @csrf
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="hidden" name="item_price" value="{{ $item->price }}">
                         <button type="submit">コンビニ払いで購入</button>
                     </form>
 
                     <!-- カード払いのボタン -->
-                    <form id="cardForm" style="display: none;" action="{{ asset('pay') }}" method="POST">
+                    <form id="cardForm" action="{{ asset('cardPay') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="hidden" name="item_price" value="{{ $item->price }}">

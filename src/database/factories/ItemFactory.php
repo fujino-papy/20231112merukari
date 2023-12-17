@@ -22,7 +22,7 @@ class ItemFactory extends Factory
             'categories_id' => \App\Models\Category::inRandomOrder()->first()->id,
             'conditions_id' => \App\Models\Condition::inRandomOrder()->first()->id,
             'summary' => $this->faker->sentence,
-            'image_url' => $this->faker->imageUrl,
+            'image_url' => $this->faker->imageUrl($width = 320, $height = 240),
             'price' => $this->faker->numberBetween(100, 1000),
             'created_at' => now(),
             'updated_at' => now(),

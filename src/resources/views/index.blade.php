@@ -6,6 +6,12 @@
 
 @section('content')
 
+@if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif
+
     <div class="tabs">
         <button class="index-btn" onclick="showItems('index')">おすすめ</button>
         <button class="fav-btn" onclick="showItems('favorite')">マイリスト</button>

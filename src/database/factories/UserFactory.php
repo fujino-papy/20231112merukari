@@ -18,7 +18,7 @@ class UserFactory extends Factory
             'name' => $this->faker->text(20),
             'email' => $this->faker->unique()->safeEmail,
             'password' => bcrypt('password'),
-            'img_url' => $this->faker->imageUrl,
+            'img_url' => $this->faker->imageUrl($width = 320, $height = 240),
             'post' => $this->faker->postcode,
             'address' => $this->faker->address,
             'building_name' => $this->faker->word,
