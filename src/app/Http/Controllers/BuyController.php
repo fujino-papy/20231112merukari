@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\SoldItem;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
 
@@ -14,10 +16,39 @@ class BuyController extends Controller
     {
         $item = Item::find($id);
 
+        session(['selected_item' => $item]);
+
         return view('buy', ['item' => $item]);
     }
 
+    public function address()
+    {
+        // セッションから商品情報を取得
+        $item = session('selected_item');
 
+        return view('address', ['item' => $item]);
+    }
+
+    public function addressEdit(Request $request)
+    {
+        // ログイン中のユーザーのIDを取得
+        $userId = Auth::id();
+
+        // ユーザーの住所情報を更新
+        $user = User::find($userId);
+        $user->post = $request->input('postal_code');
+        $user->address = $request->input('address');
+        $user->building_name = $request->input('building_name');
+        $user->save();
+
+        // 商品情報を取得
+        $itemId = $request->input('item_id');
+        $itemName = $request->input('item_name');
+        $itemPrice = $request->input('item_price');
+
+        // 例えば、buyPage ルートにリダイレクトする場合
+        return redirect()->route('buyPage', ['item_id' => $itemId])->with('success', '住所情報が変更されました');
+    }
     public function konbiniPay(Request $request)
     {
         // コンビニ払いの場合は直接成功として扱い、SoldItemを作成

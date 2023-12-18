@@ -14,6 +14,12 @@
     </div>
 @endif
 
+@if(session('success'))
+    <div class="alert alert-danger">
+        {{ session('success') }}
+    </div>
+@endif
+
 <div class="container">
     <div class="item-container">
         <div class="item">
@@ -44,7 +50,10 @@
                 </div>
                 <div class="address">
                     <p class="delivery_address">配送先</p>
-                    <a href="" class="address_change">変更する</a>
+                    <form class="address_form" action="{{ route('address')}}" method="get">
+                        @csrf
+                        <button  type="submit" class="address_change">変更する</button>
+                    </form>
                 </div>
             </div>
         </div>

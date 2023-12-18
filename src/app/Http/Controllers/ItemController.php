@@ -62,7 +62,7 @@ class ItemController extends Controller
     public function store(StoreItemRequest $request)
     {
         $imagePath = $request->file('image')->store('uploads', 'public');
-        $productImagePath = $request->file('product_image')->store('products');
+        $productImagePath = $request->file('image')->store('uploads');
 
         $item = new Item();
         $item->users_id = auth()->user()->id;

@@ -23,6 +23,8 @@ Route::get('/item/{item_id}', [ItemController::class, 'detail'])->name('detail')
 Route::get('/buy/{item_id}', [BuyController::class, 'buyPage'])->name('buyPage');
 Route::post('/konbiniPay', [BuyController::class, 'konbiniPay'])->name('konbiniPay');
 Route::post('/cardPay', [BuyController::class, 'cardPay'])->name('cardPay');
+Route::get('/address', [BuyController::class, 'address'])->name('address');
+Route::post('/address/edit', [BuyController::class, 'addressEdit'])->name('addressEdit');
 Route::get('/buyComplete', [BuyController::class, 'buyComplete'])->name('buyComplete');
 Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
 Route::get('/profile', [MypageController::class, 'profile'])->name('profile');

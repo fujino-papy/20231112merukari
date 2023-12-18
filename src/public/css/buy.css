@@ -38,22 +38,23 @@
 }
 
 .pay {
-    display: flex;
-    align-items: center;
-     /* 垂直方向に中央揃え */
+    margin-top: 10px;
+        margin-bottom: 0;
 }
 
-.pay_Method {
-    margin-right: 10px;
-}
+
+
 .Payment-Method_change{
     margin-left: 50%;
 }
 
+.delivery_address{
+    margin-top: 10px;
+    margin-bottom: 0;
+}
 .address {
-    display: flex;
-    align-items: center;
-     /* 垂直方向に中央揃え */
+    margin-top: 10px;
+        margin-bottom: 0px;
 }
 
 .delivery_address {
