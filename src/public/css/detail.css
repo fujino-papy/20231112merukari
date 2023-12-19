@@ -16,9 +16,9 @@
 }
 
 .img{
-    width: 75%;
+    width: 60%;
     margin-top: 10%;
-    margin-left: 10%;
+    margin-left: 15%;
 }
 
 /* 商品詳細 */
@@ -46,6 +46,29 @@
     font-weight: bold;
 }
 
+.category_content,
+.condition_content {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.item_category {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.category{
+    background-color: dimgray;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* 商品の状態 */
+.item_condition {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
 /* 購入ボタン */
 .buy {
     width: 175px;
@@ -59,32 +82,26 @@
 
 /* 商品説明 */
 .summary {
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 20px;
+    font-weight: bold;
 }
 
 /* 商品情報 */
 .info {
-    font-size: 14px;
+    font-size: 20px;
     margin-top: 20px;
+    font-weight: bold;
 }
+
 
 /* カテゴリー */
-.item_category {
-    margin-bottom: 10px;
-}
-
-/* 商品の状態 */
-.item_condition {
-    margin-bottom: 10px;
-}
-
 .favorite_button{
-    height: 60px;
+    height: 25px;
 }
 
 .ster_img {
-    width: 50px;
+    width: 25px;
     border: none;
 }
 
@@ -95,13 +112,50 @@
 }
 
 .comment_img {
-    width: 50px;
+    width: 25px;
+    margin-left: 25px;
 }
 
+.counts{
+    margin-top: 10px;
+}
 .favorite_count{
-margin-left: 25px;
+margin-left: 8px;
 }
 
 .comment_count{
-margin-left: 40px;
+margin-left: 38px;
+
+}
+
+@media (max-width: 768px) {
+
+    .main{
+        text-align: center;
+    }
+
+    .img {
+        text-align: center;
+        width: 60%;
+        margin-top: 10%;
+        margin-left: 0;
+    }
+    .item_img,
+    .item-details {
+        width: 100%;
+        /* 幅を100%に変更 */
+        float: none;
+        /* floatを解除 */
+        box-sizing: border-box;
+        margin-left: 0;
+        /* 左のマージンを0に変更 */
+    }
+
+        .category_content,
+        .condition_content {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
 }

@@ -6,18 +6,18 @@
 
 @section('content')
 <div class="container">
-        <div class="item-images">
-            <img class="images" src="{{ asset($item->image_url) }}" alt="商品画像">
+    <div class="item-images">
+        <img class="images" src="{{ asset($item->image_url) }}" alt="商品画像">
+    </div>
+    <div class="item-detail">
+        <div class="item-info">
+            <h2>{{ $item->name }}</h2>
+            <p>¥{{ $item->price }}</p>
         </div>
-        <div class="item-detail">
-            <div class="item-info">
-                <h2>{{ $item->name }}</h2>
-                <p>¥{{ $item->price }}</p>
-            </div>
         <div class="icon">
             <div class="favorite_button">
                 <div class="favorite_buttons_container">
-                    @if(auth()->check())
+                @if(auth()->check())
                         @if($isFavorite)
                             <form class="favoriteDelete" action="{{ route('favoriteDelete', $item->id) }}" method="post">
                                 @csrf
@@ -52,13 +52,12 @@
                     </div>
                 @endforeach
                 </div>
-
                 <div class="comment_form">
                     <h2>コメント</h2>
                     @if(auth()->check())
                         <!-- ログインしている場合、コメント送信フォームを表示 -->
                         <form action="{{ route('commentPost') }}" method="post">
-                            @csrf
+                                @csrf
                             <input type="hidden" name="item_id" value="{{ $item->id }}">
                             <div class="form-group">
                                 <label for="comment">コメント</label>
@@ -71,6 +70,6 @@
                         <a href="{{ route('login') }}" class="btn btn-primary">ログインしてコメントする</a>
                     @endif
                 </div>
-        </div>
+    </div>
 </div>
 @endsection

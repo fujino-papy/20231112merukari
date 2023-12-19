@@ -39,7 +39,6 @@
 
 .comment_info {
     margin-top: 10px;
-    /* 適切なマージンを設定してください */
 }
 
 .ster_img{
@@ -113,4 +112,39 @@
 
 .comment_count {
     margin-left: 40px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .icon{
+        margin-left: 25%;
+    }
+
+    .favorite_count {
+        margin-left: 5px;
+    }
+
+    .favorite_button{
+        display: flex;
+        justify-content: center;
+    }
+
+    .item-images,
+    .item-detail {
+        text-align: center;
+        width: 100%;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .item-images {
+        margin-top: 15px;
+        margin-bottom: 20px;
+        width: 50%;
+        /* 適宜調整してください */
+    }
 }

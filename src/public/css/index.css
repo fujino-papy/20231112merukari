@@ -93,9 +93,14 @@
     background-color: #ddd;
 }
 
-@media (max-width: 1150px) {
+.sold-out{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@media (max-width: 1400px) {
     .item {
-        width: 20%;
+        width: 25%;
         /* 画面幅が1150px以下の場合、4つで折り返し */
     }
 }

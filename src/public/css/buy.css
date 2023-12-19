@@ -42,6 +42,10 @@
         margin-bottom: 0;
 }
 
+.stripe-button{
+    background-color: #ccc;
+    color: #000;
+}
 
 
 .Payment-Method_change{

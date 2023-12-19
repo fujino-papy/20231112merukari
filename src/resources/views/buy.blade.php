@@ -72,7 +72,7 @@
                         @csrf
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="hidden" name="item_price" value="{{ $item->price }}">
-                        <button type="submit">コンビニ払いで購入</button>
+                        <button class="konbini_button" type="submit">コンビニ払いで購入</button>
                     </form>
 
                     <!-- カード払いのボタン -->
@@ -80,17 +80,46 @@
                         {{ csrf_field() }}
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="hidden" name="item_price" value="{{ $item->price }}">
-                        <script
-                            src="https://checkout.stripe.com/checkout.js"
-                            class="stripe-button"
-                            data-key="{{ env('STRIPE_KEY') }}"
-                            data-amount="{{ $item->price }}"
-                            data-name="Stripe決済デモ"
-                            data-label="カードで購入"
-                            data-description="これはデモ決済です"
-                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                            data-locale="auto"
-                            data-currency="JPY">
+                        <button class="card_button" type="submit" id="customStripeButton">カードで購入</button>
+                        <script src="https://checkout.stripe.com/checkout.js"></script>
+                        <script>
+                            var handler = StripeCheckout.configure({
+                                key: "{{ env('STRIPE_KEY') }}",
+                                image: "https://stripe.com/img/documentation/checkout/marketplace.png",
+                                locale: "auto",
+                                currency: "JPY",
+                                allowRememberMe: false,
+                                token: function (token) {
+                                    // ここでトークンを取得した後の処理を行います。
+                                    // 例えば、フォームをサブミットするなど。
+
+                                    // 以下は例として、トークンをフォームに追加し、フォームをサブミットするコードです。
+                                    var form = document.getElementById('cardForm');
+                                    var hiddenInput = document.createElement('input');
+                                    hiddenInput.setAttribute('type', 'hidden');
+                                    hiddenInput.setAttribute('name', 'stripeToken');
+                                    hiddenInput.setAttribute('value', token.id);
+                                    form.appendChild(hiddenInput);
+
+                                    // フォームをサブミット
+                                    form.submit();
+                                }
+                            });
+
+                            document.getElementById('customStripeButton').addEventListener('click', function (e) {
+                                // Stripe Checkoutを開く処理
+                                handler.open({
+                                    name: "Stripe決済デモ",
+                                    description: "これはデモ決済です",
+                                    amount: {{ $item->price }},
+                                });
+                                e.preventDefault();
+                            });
+
+                            // Close Checkout on page navigation
+                            window.addEventListener('popstate', function () {
+                                handler.close();
+                            });
                         </script>
                     </form>
                 </div>

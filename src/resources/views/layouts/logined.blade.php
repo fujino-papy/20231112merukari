@@ -18,7 +18,7 @@
         <a class="header__logo" href="/">
             COACHTECH
         </a>
-
+        </div>
         <div class="header-search">
                 <form class="search_form" action="{{ route('search') }}" method="GET">
                     <label class="label">
@@ -27,7 +27,6 @@
                     <button class="search_button" type="submit"></button>
                 </form>
         </div>
-
         <nav class="header-nav">
             <ul class="header-links">
                 @if (Auth::check())
