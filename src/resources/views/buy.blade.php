@@ -20,8 +20,6 @@
     </div>
 @endif
 
-<div class="container">
-    <div class="item-container">
         <div class="item">
             <div class="item-content">
                 <div class="item_img">
@@ -35,15 +33,18 @@
             <div class="change">
                 <div class="pay">
                     <p class="pay_Method">支払方法</p>
+                        @if ($item->price >= 300000)
+                            <p style="color: red;">￥300,000以上のお支払いはコンビニ払いを選択できません</p>
+                        @endif
                     <button type="button" onclick="togglePaymentSection()" class="Payment-Method_change">変更する</button>
                 </div>
                 <div class="selectPaymentMethod" style="display: none;">
                     <label>
-                        <input type="radio" name="paymentMethod" value="konbini" checked>
+                        <input type="radio" name="paymentMethod" value="konbini" {{ $item->price >= 300000 ? 'disabled' : '' }}>
                         コンビニ払い
                     </label>
                     <label>
-                        <input type="radio" name="paymentMethod" value="card">
+                        <input type="radio" name="paymentMethod" value="card" checked>
                         クレジットカード払い
                     </label>
                         <button onclick="selectPaymentMethod()">選択する</button>
@@ -58,17 +59,22 @@
             </div>
         </div>
 
-        <div class="price-info-container">
-            <div class="price-info-box">
-                <div class="price-info">
-                    <ul class="Payment_Information">
-                        <li class="item_price">商品代金　￥{{ $item->price }}</li>
-                        <li class="total_price">支払金額￥{{ $item->price }}</li>
-                        <div class="way" id="selectedPaymentMethod">支払方法　コンビニ払い</div>
-                    </ul>
+        <div class="item_container">
+            <div class="price-info-container">
+                <div class="price-info-box">
+                    <div class="price-info">
+                        <ul class="Payment_Information">
+                            <li class="item_price">商品代金　￥{{ $item->price }}</li>
+                            <li class="total_price">支払金額￥{{ $item->price }}</li>
+                            <div class="way" id="selectedPaymentMethod">支払方法　カード払い</div>
+                        </ul>
+                    </div>
+                </div>
+            </div>
 
+            <div class="buy_button">
                     <!-- コンビニ払いのボタン -->
-                    <form action="{{ route('konbiniPay') }}" method="POST" id="konbiniForm">
+                    <form action="{{ route('konbiniPay') }}" method="POST" id="konbiniForm" style="display: none;">
                         @csrf
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="hidden" name="item_price" value="{{ $item->price }}">
@@ -76,7 +82,7 @@
                     </form>
 
                     <!-- カード払いのボタン -->
-                    <form id="cardForm" action="{{ asset('cardPay') }}" method="POST" style="display: none;">
+                    <form class="button_container" id="cardForm" action="{{ asset('cardPay') }}" method="POST" >
                         {{ csrf_field() }}
                         <input type="hidden" name="item_id" value="{{ $item->id }}">
                         <input type="hidden" name="item_price" value="{{ $item->price }}">
@@ -123,20 +129,7 @@
                         </script>
                     </form>
                 </div>
-            </div>
-        </div>
 
-<div class="selectPaymentMethod" style="display: none;">
-    <label>
-        <input type="radio" name="paymentMethod" value="konbini" checked>
-        コンビニ払い
-    </label>
-    <label>
-        <input type="radio" name="paymentMethod" value="card">
-        クレジットカード払い
-    </label>
-    <button onclick="selectPaymentMethod()">選択する</button>
-</div>
 
 <script>
     function togglePaymentSection() {

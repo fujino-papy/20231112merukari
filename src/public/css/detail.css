@@ -70,10 +70,10 @@
 }
 
 /* 購入ボタン */
-.buy {
+.buyPage {
     width: 175px;
     height: 40px;
-    background-color: #000;
+    background-color: #FF5555;
     color: #fff;
     border: none;
     cursor: pointer;

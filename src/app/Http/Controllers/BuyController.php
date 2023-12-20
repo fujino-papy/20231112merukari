@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Stripe\Stripe;
 use Stripe\Charge;
+use Stripe\Checkout\Session as StripeSession;
+use Illuminate\Support\Facades\Redirect;
 
 class BuyController extends Controller
 {
@@ -61,7 +63,34 @@ class BuyController extends Controller
         $item = Item::find($request->item_id);
         $item->sold = true;
         $item->save();
-        return redirect()->route('buyComplete');
+
+        try {
+            Stripe::setApiKey(config('services.stripe.secret'));
+
+            $session = StripeSession::create([
+                'payment_method_types' => ['konbini'],
+                'line_items' => [
+                    [
+                        'price_data' => [
+                            'currency' => 'JPY',
+                            'product_data' => [
+                                'name' => $item->name,
+                            ],
+                            'unit_amount' => $item->price, // 金額をセント単位に変換
+                        ],
+                        'quantity' => 1,
+                    ],
+                ],
+                'mode' => 'payment',
+                'success_url' => route('buyComplete'),
+                'cancel_url' => route('index'),
+            ]);
+
+            return redirect()->away($session->url);
+        } catch (\Exception $e) {
+            // Stripeでの支払いが失敗した場合の処理
+            return Redirect::route('index')->with('error', $e->getMessage());
+        }
     }
 
     public function cardPay(Request $request)
@@ -97,11 +126,10 @@ class BuyController extends Controller
                 // 決済が失敗した場合、/payにリダイレクト
                 return redirect()->route('index')->with('error');
             }
+        } catch (Exception $e) {
+            // エラーが発生した場合の処理
+            return redirect()->route('pay')->with('error', $e->getMessage());
         }
-    catch (Exception $e) {
-        // エラーが発生した場合の処理
-        return redirect()->route('pay')->with('error', $e->getMessage());
-    }
     }
     public function buyComplete()
     {
