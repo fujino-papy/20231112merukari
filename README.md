@@ -84,39 +84,57 @@ http://localhost/
 
 ## 環境構築
 1. 必要なソフトウェア
+
 ・PHP
+
 ・Composer
+
 ・NPM
+
 ・MySQL
 
 2. プロジェクトのクローン
+
 GitHubからプロジェクトをクローンします。
+
 git clone https://github.com/fujino-papy/20231112merukari.git
 
 3. パッケージのインストール
+
 cd coachtech/ouyou/merukari
+
 composer install
+
 npm install
 
 4. 環境変数の設定
+
 .env.example ファイルをコピーして .env ファイルを作成し、必要な設定を行ってください。
+
 cp .env.example .env
 
 5. アプリケーションキーの生成
+
 php artisan key:generate
 
 6. データベースのマイグレーション・シーディング
+
 php artisan migrate
+
 php artisan db:seed
 
 7. Stripeキーの設定
+
 StripeのAPIキーを .env ファイルに追加してください。
+
 STRIPE_KEY=pk_test_51ODq37H8tlSpwIEwscawyzv0ZjECOiHqmljeLWjarGb1JU8hqplWJrC0rWHSrrtQftlEXSB8vl6lwxN6R5a1cQmN00VLRoOcn5
+
 STRIPE_SECRET=sk_test_51ODq37H8tlSpwIEwBms4lG8lVmCCibXNsSWZCgwMiOUI40j4cY3NSUix2zaWLweILnit0xH02nPzmSIY0rhy4EMJ00ActSFwj0
 
 //テスト環境用キーです。
 
 8. アプリケーションの起動
+
 php artisan serve
 
 
