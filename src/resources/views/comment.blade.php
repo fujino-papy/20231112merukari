@@ -53,14 +53,13 @@
                 @endforeach
                 </div>
                 <div class="comment_form">
-                    <h2>コメント</h2>
                     @if(auth()->check())
                         <!-- ログインしている場合、コメント送信フォームを表示 -->
-                        <form action="{{ route('commentPost') }}" method="post">
+                        <form class="comment_content" action="{{ route('commentPost') }}" method="post">
                                 @csrf
                             <input type="hidden" name="item_id" value="{{ $item->id }}">
                             <div class="form-group">
-                                <label for="comment">コメント</label>
+                                <label class="commemt_ttl" for="comment">商品へのコメント</label>
                                 <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">コメントを送信する</button>

@@ -9,12 +9,13 @@
     flex: 1;
     margin-right: 20px;
     margin-top: 20px;
-    margin-left: 15%;
+    margin-left: 20%;
     width: 50%;
 }
 
 .images {
     width: 100%;
+    min-width: 380px;
 }
 
 .item-detail {
@@ -72,28 +73,37 @@
     position: relative;
     width: 100%;
     margin-top: 20px;
+    text-align: center;
 }
 
-.comment_form h2 {
-    margin-bottom: 20px;
-}
 
-.comment_form form {
+.comment_content {
     width: 60%;
 }
 
-.comment_form form .form-group {
+.comment_content .form-group {
     margin-bottom: 20px;
 }
 
-.comment_form form textarea {
+.comment_content textarea {
     width: 100%;
     height: 100px;
     resize: none;
 }
 
-.comment_form form .btn {
+.comment_content .btn {
     width: 100%;
+}
+
+.btn {
+        background-color: #FF5555;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 130px;
 }
 
 .comment_form .action {
@@ -144,7 +154,15 @@
     .item-images {
         margin-top: 15px;
         margin-bottom: 20px;
-        width: 50%;
-        /* 適宜調整してください */
+        width: 100%;
+    }
+
+        .images {
+            width: 50%;
+            min-width: 320px;
+        }
+
+    .comment_content {
+        width: 100%;
     }
 }

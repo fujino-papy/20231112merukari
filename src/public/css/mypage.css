@@ -14,6 +14,18 @@
     align-items: center;
 }
 
+.profile_button{
+    width: 175px;
+    height: 40px;
+    background-color: #fff;
+    color: #FF5555;
+    border: solid 2px #FF5555;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-left: 10%;
+}
+
 .profile-img {
     position: relative;
     width: 125px;
@@ -135,6 +147,18 @@
 @media (max-width: 768px) {
     .item {
         width: 40%;
-        /* 画面幅が765px以下の場合、2つで折り返し */
+    }
+
+    .profile {
+        flex-direction: column;
+        height: 10%;
+        align-items: center;
+    }
+    .profile_button {
+        margin-top: 10px;
+    }
+
+    .profile_button{
+        margin-left: 0;
     }
 }

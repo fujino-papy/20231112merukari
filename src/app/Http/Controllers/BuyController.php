@@ -38,9 +38,9 @@ class BuyController extends Controller
 
         // ユーザーの住所情報を更新
         $user = User::find($userId);
-        $user->post = $request->input('postal_code');
-        $user->address = $request->input('address');
-        $user->building_name = $request->input('building_name');
+        $user->post = $request->filled('post') ? $request->input('post') : "";
+        $user->address = $request->filled('address') ? $request->input('address') : "";
+        $user->building_name = $request->filled('building_name') ? $request->input('building_name') : "";
         $user->save();
 
         // 商品情報を取得

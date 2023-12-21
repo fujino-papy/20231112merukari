@@ -15,6 +15,8 @@
 
 <div class="profile-edit-container">
 
+    <h1 class="profile_ttl">プロフィール設定</h1>
+
     <div class="profile-image">
         <img src="{{ asset(Auth::user()->img_url) }}" alt="プロフィール画像">
     </div>
@@ -24,8 +26,8 @@
             @csrf
 
             <div class="profile-image-button">
-            <input type="file" name="img_url" id="img_url" accept="image/*">
-            <label for="img_url">画像を選択する</label>
+            <input class="img_url" type="file" name="img_url" id="img_url" accept="image/*">
+            <label class="img_url" for="img_url">画像を選択する</label>
         </div>
 
             <div class="form-group">
@@ -48,7 +50,7 @@
                 <input type="text" name="building_name" id="building_name" value="{{ Auth::user()->building_name }}">
             </div>
 
-            <button type="submit">更新する</button>
+            <button class="update_button" type="submit">更新する</button>
         </form>
     </div>
 

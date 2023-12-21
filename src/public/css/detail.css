@@ -36,7 +36,6 @@
 
 /* 商品名 */
 .item_name {
-    font-size: 20px;
     font-weight: bold;
 }
 
@@ -125,7 +124,6 @@ margin-left: 8px;
 
 .comment_count{
 margin-left: 38px;
-
 }
 
 @media (max-width: 768px) {
@@ -156,6 +154,31 @@ margin-left: 38px;
             display: flex;
             justify-content: center;
             margin-bottom: 10px;
+        }
+
+        .favorite_buttons_container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* アイコンを垂直方向中央に配置 */
+        }
+
+        .favorite_buttons_container .favorite,
+        .favorite_buttons_container .favoriteDelete {
+            margin-right: 5px;
+            /* アイコン間の隙間を調整 */
+        }
+
+        .favorite_buttons_container .comment_icon {
+            margin-left: 10px;
+            /* アイコン間の隙間を調整 */
+        }
+
+        .favorite_count {
+            margin-left: 2px;
+        }
+        .comment_count {
+            margin-left: 45px;
         }
 
 }

@@ -13,7 +13,9 @@
         <div class="profile-name">
         <p>{{ Auth::user()->name }}</p>
         </div>
-        <a href="/profile">プロフィール編集</a>
+        <form class="profile_form" action="{{ route('profile') }}" method="get">
+        <button class="profile_button">プロフィール編集</button>
+        </form>
     </div>
 
 

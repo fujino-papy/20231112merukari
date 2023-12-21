@@ -1,3 +1,7 @@
+.profile_ttl{
+    text-align: center;
+}
+
 .profile-edit-container {
     margin: 0 auto;
     width: 500px;
@@ -20,11 +24,16 @@
 }
 
 .profile-image-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    cursor: pointer;
+    width: 100%;
+        height: 40px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 5px;
+        padding-top: 10px;
 }
 
 .profile-image-button input {
@@ -36,7 +45,7 @@
     height: 100%;
     text-align: center;
     font-size: 16px;
-    color: #333;
+    color: #fff;
 }
 
 .profile-form {
@@ -59,12 +68,13 @@
     border-radius: 5px;
 }
 
-.button {
+.update_button {
     width: 100%;
-    height: 40px;
-    background-color: #000;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+        height: 40px;
+        background-color: #FF5555;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
 }

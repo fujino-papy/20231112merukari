@@ -10,10 +10,9 @@
         <img class="img" src="{{ asset($item->image_url) }}" alt="{{ $item->name }}">
     </div>
     <div class="item-details">
-        <p class="item_name">{{ $item->name }}</p>
+        <h1 class="item_name">{{ $item->name }}</h1>
         <p class="item_price">￥{{ $item->price }}</p>
         <div class="icon">
-            <div class="favorite_button">
                 <div class="favorite_buttons_container">
                     @if(auth()->check())
                         @if($isFavorite)
@@ -34,7 +33,6 @@
                         <a class="comment_icon" href="{{ route('comment', ['item_id' => $item->id]) }}"><img class="comment_img" src="{{ asset('img/comment.png') }}" alt="Comment"></a>
                     @endif
                 </div>
-            </div>
             <div class="counts">
             <a class="favorite_count">{{ $favoriteCount }}</a>
             <a class="comment_count">{{ $commentCount }}</a>

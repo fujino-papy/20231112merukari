@@ -19,7 +19,7 @@
         {{ session('success') }}
     </div>
 @endif
-
+<div class="container">
         <div class="item">
             <div class="item-content">
                 <div class="item_img">
@@ -129,6 +129,7 @@
                         </script>
                     </form>
                 </div>
+        </div>
 
 
 <script>

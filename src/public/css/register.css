@@ -9,6 +9,10 @@
     text-align: center;
 }
 
+.form__label--item{
+    text-wrap: nowrap;
+}
+
 .form {
     margin: 0 auto;
     width: 25%;
@@ -35,12 +39,13 @@
     height: 40px;
     border: 1px solid #ddd;
     border-radius: 3px;
-
     appearance: none;
+    min-width: 125px;
 }
 
 .form__button {
     margin-top: 20px;
+    min-width: 125px;
 }
 
 .form__button-submit {
@@ -52,6 +57,7 @@
     background: #000;
     color: #fff;
     cursor: pointer;
+        min-width: 125px;
 }
 
 .login__link {

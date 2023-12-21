@@ -1,25 +1,31 @@
-.container{
+.container {
     display: flex;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 
 .item {
     width: 70%;
+    box-sizing: border-box;
+    /* パディングとボーダーを幅に含める */
+    margin-right: 20px;
+    /* アイテム間のスペーシングを追加 */
 }
 
-.item_container{
-    width: 20%;
+.item_container {
+    width: 50%;
+    /* 小さな画面ではフル幅 */
+    margin-top: 20px;
+    /* 小さな画面でアイテム間のスペーシングを追加 */
 }
 
 .item-content {
-    display: flex   ;
-    margin-left: 20px;
-    width: 100%;
-    /* 適切なマージンを設定 */
+    display: flex;
 }
 
 .item_img {
     margin-top: 100px;
-    width: 20%;
+    width: 300px;
 }
 
 .item_img img {
@@ -39,7 +45,7 @@
 
 .pay {
     margin-top: 10px;
-        margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .stripe-button{
@@ -50,6 +56,15 @@
 
 .Payment-Method_change{
     margin-left: 50%;
+    background-color: #FF5555;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 10px;
+        width: 130px;
+    
 }
 
 .delivery_address{
@@ -68,6 +83,14 @@
 
 .address_change{
     margin-left: 50%;
+    background-color: #FF5555;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-top: 10px;
+        width: 130px;
 }
 .price-info-container {
     margin-top: 100px;
@@ -148,32 +171,40 @@
 }
 
 @media (max-width: 768px) {
+
+    .container {
+            display: flex;
+            flex-wrap: wrap;
+            /* アイテムが次の行に折り返せるようにする */
+        }
     .item {
-        flex-direction: column;
-        /* 画面幅が768px以下の場合に縦並びに変更 */
+        width: 100%;
+        /* 小さな画面ではフル幅 */
+        margin-right: 0;
+        /* 小さな画面では右側のマージンを削除 */
+    }
+
+    .item_container {
+        width: 100%;
+        /* 小さな画面ではフル幅 */
     }
 
     .item-content {
-        margin-left: 0;
-        /* 縦並びの場合、左マージンを0に設定 */
+        display: flex;
+        justify-content: center;
+        /* 小さな画面ではアイテムを垂直にスタック */
     }
 
-    .item_img {
+    .change{
         width: 100%;
-        /* 画面幅に合わせて100%に変更 */
+        text-align: center;
     }
 
-    .item-info {
+    .Payment-Method_change{
         margin-left: 0;
-        /* 縦並びの場合、左マージンを0に設定 */
-        margin-top: 20px;
-        /* 適切なマージンを設定 */
     }
 
-    .price-info-container {
-        margin-top: 20px;
-        /* 適切なマージンを設定 */
-        flex-direction: column;
-        /* 画面幅が768px以下の場合に縦並びに変更 */
-    }
+        .address_change{
+            margin-left: 0;
+        }
 }

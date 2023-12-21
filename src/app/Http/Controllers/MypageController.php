@@ -44,10 +44,10 @@ class MyPageController extends Controller
         $user = Auth::user();
 
         // ユーザー情報を更新
-        $user->name = $request->input('name');
-        $user->post = $request->input('post');
-        $user->address = $request->input('address');
-        $user->building_name = $request->input('building_name');
+        $user->name = $request->filled('name') ? $request->input('name') : "";
+        $user->post = $request->filled('post') ? $request->input('post') : "";
+        $user->address = $request->filled('address') ? $request->input('address') : "";
+        $user->building_name = $request->filled('building_name') ? $request->input('building_name') : "";
 
         // プロフィール画像のアップロードを処理
         if ($request->hasFile('img_url')) {
@@ -67,4 +67,5 @@ class MyPageController extends Controller
         // 成功メッセージと共にリダイレクト
         return back()->with('success', 'プロフィールが正常に更新されました');
     }
+
 }
