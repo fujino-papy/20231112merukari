@@ -25,7 +25,7 @@ class MyPageRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'post' => 'nullable|string|max:255',
+            'post' => 'nullable|string|max:255|regex:/^\d{7}$/',
             'address' => 'nullable|string|max:255',
             'building_name' => 'nullable|string|max:255',
             'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
