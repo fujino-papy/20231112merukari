@@ -24,14 +24,10 @@
         <h1 class="exhibit_ttl">商品の出品</h1>
         <form method="post" action="{{ route('items.store') }}" enctype="multipart/form-data">
             @csrf
-
-            <!-- 商品画像 -->
             <label class="exhibit_content" for="image">商品画像:</label>
-            <!-- 画像プレビューエリア -->
             <div class="custom-file-input">
                 <div class="image-preview" id="imagePreview"></div>
                 </div>
-                <!-- ファイル追加ボタンのテキストを変更 -->
                 <label class="file-upload-btn">
                     画像を追加
                     <div class="image">
@@ -41,7 +37,6 @@
             <br>
 
             <p class="item_detail">商品の詳細</p>
-            <!-- カテゴリー -->
             <label class="exhibit_content" for="category">カテゴリー:</label>
             <select class="category" name="category_id" required>
                 @foreach($categories as $category)
@@ -50,35 +45,26 @@
             </select>
             <br>
 
-            <!-- 商品の状態 -->
             <label class="exhibit_content" for="condition">商品の状態:</label>
             <select class="condition" name="condition_id" required>
-                <!-- 商品の状態の選択肢を動的に取得するロジックを追加 -->
                 @foreach($conditions as $condition)
                     <option value="{{ $condition->id }}">{{ $condition->conditions }}</option>
                 @endforeach
             </select>
             <br>
-
             <p class="item_name">商品名と説明</p>
-            <!-- 商品名 -->
             <label class="exhibit_content" for="name">商品名:</label>
             <input class="name" type="text" name="name" required>
             <br>
-
-
-            <!-- 商品の説明 -->
             <label class="exhibit_content" for="summary">商品の説明:</label>
             <textarea class="summary" name="summary" required></textarea>
             <br>
 
             <p class="item_price">販売価格</p>
-            <!-- 販売価格 -->
             <label class="exhibit_content" for="price">販売価格:</label>
             <input class="price" type="text" name="price" placeholder="￥" required>
             <br>
 
-            <!-- 出品ボタン -->
             <button class="exhibit_button" type="submit">出品する</button>
         </form>
         </div>

@@ -54,7 +54,6 @@
                 </div>
                 <div class="comment_form">
                     @if(auth()->check())
-                        <!-- ログインしている場合、コメント送信フォームを表示 -->
                         <form class="comment_content" action="{{ route('commentPost') }}" method="post">
                                 @csrf
                             <input type="hidden" name="item_id" value="{{ $item->id }}">
@@ -65,7 +64,6 @@
                             <button type="submit" class="btn btn-primary">コメントを送信する</button>
                         </form>
                     @else
-                        <!-- ログインしていない場合、ログイン画面へ遷移するボタンを表示 -->
                         <a href="{{ route('login') }}" class="btn btn-primary">ログインしてコメントする</a>
                     @endif
                 </div>

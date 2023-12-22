@@ -7,16 +7,12 @@
 .item {
     width: 70%;
     box-sizing: border-box;
-    /* パディングとボーダーを幅に含める */
     margin-right: 20px;
-    /* アイテム間のスペーシングを追加 */
 }
 
 .item_container {
     width: 50%;
-    /* 小さな画面ではフル幅 */
     margin-top: 20px;
-    /* 小さな画面でアイテム間のスペーシングを追加 */
 }
 
 .item-content {
@@ -64,7 +60,6 @@
         border-radius: 5px;
         margin-top: 10px;
         width: 130px;
-    
 }
 
 .delivery_address{
@@ -78,7 +73,6 @@
 
 .delivery_address {
     margin-right: 10px;
-     /* 要素間の間隔を調整 */
 }
 
 .address_change{
@@ -156,7 +150,6 @@
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    /* 適切なマージンを設定 */
 }
 
 .cardNumberElement{
@@ -167,7 +160,6 @@
 .cvvElement {
     margin-top: 8px;
     width: 30%;
-    /* 適切なマージンを設定 */
 }
 
 @media (max-width: 768px) {
@@ -175,24 +167,20 @@
     .container {
             display: flex;
             flex-wrap: wrap;
-            /* アイテムが次の行に折り返せるようにする */
         }
     .item {
         width: 100%;
-        /* 小さな画面ではフル幅 */
+
         margin-right: 0;
-        /* 小さな画面では右側のマージンを削除 */
     }
 
     .item_container {
         width: 100%;
-        /* 小さな画面ではフル幅 */
     }
 
     .item-content {
         display: flex;
         justify-content: center;
-        /* 小さな画面ではアイテムを垂直にスタック */
     }
 
     .change{

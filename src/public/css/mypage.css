@@ -42,7 +42,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     white-space: nowrap;
-    /* テキストが折り返されないようにする */
 }
 
 .tabs {
@@ -140,7 +139,6 @@
 @media (max-width: 1150px) {
     .item {
         width: 20%;
-        /* 画面幅が1150px以下の場合、4つで折り返し */
     }
 }
 

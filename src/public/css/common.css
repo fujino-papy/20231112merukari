@@ -130,9 +130,7 @@ width: 100%;
     .header-search,
     .header-nav {
         width: 100%;
-        /* 幅を100%に変更 */
         margin-top: 10px;
-        /* 適宜調整 */
     }
 
 }

@@ -33,7 +33,6 @@
                         @if($item->isSoldOut)
                             <p class="sold-out">Sold Out</p>
                         @endif
-                        <!-- Add any other details you want to display -->
                     </div>
                 </div>
             @endforeach
@@ -53,7 +52,6 @@
                         @if($item->isSoldOut)
                             <p class="sold-out">Sold Out</p>
                         @endif
-                        <!-- Add any other details you want to display -->
                     </div>
                 </div>
             @endforeach

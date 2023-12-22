@@ -43,7 +43,6 @@
     </div>
 
     <div class="items" id="buying-items" style="display: none;">
-    <!-- 購入した商品の表示 -->
     <div class="items-container">
         @foreach($boughtItemsDetails as $item)
             <div class="item">
@@ -52,7 +51,6 @@
                 <div class="item-details">
                     <p class="item_name">{{ $item->name }}</p>
                     <p class="item_price">Price: ￥{{ $item->price }}</p>
-                    <!-- その他の商品詳細情報の表示 -->
                 </div>
             </div>
         @endforeach

@@ -96,24 +96,17 @@
                                 currency: "JPY",
                                 allowRememberMe: false,
                                 token: function (token) {
-                                    // ここでトークンを取得した後の処理を行います。
-                                    // 例えば、フォームをサブミットするなど。
-
-                                    // 以下は例として、トークンをフォームに追加し、フォームをサブミットするコードです。
                                     var form = document.getElementById('cardForm');
                                     var hiddenInput = document.createElement('input');
                                     hiddenInput.setAttribute('type', 'hidden');
                                     hiddenInput.setAttribute('name', 'stripeToken');
                                     hiddenInput.setAttribute('value', token.id);
                                     form.appendChild(hiddenInput);
-
-                                    // フォームをサブミット
                                     form.submit();
                                 }
                             });
 
                             document.getElementById('customStripeButton').addEventListener('click', function (e) {
-                                // Stripe Checkoutを開く処理
                                 handler.open({
                                     name: "Stripe決済デモ",
                                     description: "これはデモ決済です",
@@ -121,8 +114,6 @@
                                 });
                                 e.preventDefault();
                             });
-
-                            // Close Checkout on page navigation
                             window.addEventListener('popstate', function () {
                                 handler.close();
                             });

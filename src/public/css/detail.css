@@ -1,18 +1,14 @@
-/* 商品画像と詳細のコンテナ */
 .item-details-container {
     width: 50%;
     max-width: 1000px;
     margin: 0 auto;
     overflow: hidden;
-    /* clearfixを追加 */
 }
 
-/* 商品画像 */
 .item_img {
     float: left;
     width: 50%;
     box-sizing: border-box;
-    /* ボックスモデル修正 */
 }
 
 .img{
@@ -21,25 +17,19 @@
     margin-left: 15%;
 }
 
-/* 商品詳細 */
 .item-details {
     width: 50%;
     min-width: 250px;
-    /* item_imgと同じにする */
     box-sizing: border-box;
-    /* ボックスモデル修正 */
     padding: 20px;
     background-color: #fff;
     float: left;
-    /* 左にフロート */
 }
 
-/* 商品名 */
 .item_name {
     font-weight: bold;
 }
 
-/* 価格 */
 .item_price {
     font-size: 16px;
     font-weight: bold;
@@ -62,13 +52,11 @@
     border-radius: 5px;
 }
 
-/* 商品の状態 */
 .item_condition {
     margin-bottom: 10px;
     font-weight: bold;
 }
 
-/* 購入ボタン */
 .buyPage {
     width: 175px;
     height: 40px;
@@ -79,14 +67,12 @@
     text-decoration: none;
 }
 
-/* 商品説明 */
 .summary {
     font-size: 20px;
     margin-top: 20px;
     font-weight: bold;
 }
 
-/* 商品情報 */
 .info {
     font-size: 20px;
     margin-top: 20px;
@@ -94,7 +80,6 @@
 }
 
 
-/* カテゴリー */
 .favorite_button{
     height: 25px;
 }
@@ -141,12 +126,9 @@ margin-left: 38px;
     .item_img,
     .item-details {
         width: 100%;
-        /* 幅を100%に変更 */
         float: none;
-        /* floatを解除 */
         box-sizing: border-box;
         margin-left: 0;
-        /* 左のマージンを0に変更 */
     }
 
         .category_content,
@@ -160,18 +142,15 @@ margin-left: 38px;
             display: flex;
             justify-content: center;
             align-items: center;
-            /* アイコンを垂直方向中央に配置 */
         }
 
         .favorite_buttons_container .favorite,
         .favorite_buttons_container .favoriteDelete {
             margin-right: 5px;
-            /* アイコン間の隙間を調整 */
         }
 
         .favorite_buttons_container .comment_icon {
             margin-left: 10px;
-            /* アイコン間の隙間を調整 */
         }
 
         .favorite_count {

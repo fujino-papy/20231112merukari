@@ -14,21 +14,12 @@ class ItemController extends Controller
 {
     public function index(Request $request)
     {
-        // 検索クエリが存在するかを確認
         if ($request->has('query')) {
             return $this->search($request);
         }
-
-        // おすすめアイテムを取得（例としてランダムに取得）
         $recommendedItems = Item::inRandomOrder()->limit(40)->get();
-
-        // ログインユーザーがお気に入りしているアイテムのIDを取得
         $favoriteItemIds = auth()->check() ? auth()->user()->favorites->pluck('items_id') : collect();
-
-        // お気に入りしているアイテムの詳細情報を取得
         $favoriteItems = Item::whereIn('id', $favoriteItemIds)->get();
-
-        // 通常のアイテム一覧を取得
         $items = Item::paginate(40);
 
         foreach ($items as $item) {
@@ -84,17 +75,14 @@ class ItemController extends Controller
         $favoriteCount = 0;
         $commentCount = 0;
 
-        // ログインしている場合としていない場合で処理を分ける
         if (auth()->check()) {
             $favoriteItemIds = auth()->user()->favorites->pluck('items_id');
             $favoriteItems = Item::whereIn('id', $favoriteItemIds)->get();
             $isFavorite = $favoriteItemIds->contains($item->id);
         }
 
-        // データベースから直接お気に入りの数を取得
         $favoriteCount = Favorite::where('items_id', $item->id)->count();
 
-        // コメントが存在する場合のみ count() を呼び出す
         $comments = Comment::where('items_id', $item->id)->get();
         $commentCount = count($comments);
 

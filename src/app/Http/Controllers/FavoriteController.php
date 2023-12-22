@@ -20,8 +20,7 @@ class FavoriteController extends Controller {
             $favorite->save();
         }
 
-        // ここで$itemFavoritesをビューに渡す
-        $favorite = [$itemId => true]; // これはサンプルです。実際の値に置き換えてください。
+        $favorite = [$itemId => true];
         return back()->with('itemFavorites', $favorite);
     }
 
